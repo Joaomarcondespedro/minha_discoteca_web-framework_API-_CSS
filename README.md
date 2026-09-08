@@ -2,11 +2,13 @@
 
 O **Minha Discoteca** é uma aplicação web responsiva projetada para colecionadores gerenciarem seus acervos de mídias físicas (vinis, CDs e fitas K7) em uma estante virtual elegante, interativa e luxuosa.
 
-## 🛠️ Tecnologias Utilizadas
-* **Frontend:** HTML5, CSS3, Bootstrap 5, Sass, jQuery
-* **Design e Prototipação:** Figma, Stitch.AI
-* **Integração:** JSON Server (Mock API) e iTunes API
-* **Armazenamento:** LocalStorage
+## 🛠️ Tecnologias Utilizadas e Justificativas
+
+* **Framework CSS:** [Bootstrap 5](https://getbootstrap.com/)
+  * *Por que escolhemos:* O Bootstrap 5 (Licença MIT) foi escolhido por seu sistema de Grid extremamente maduro e suporte mobile-first. Ele atende perfeitamente ao nosso protótipo fornecendo componentes essenciais prontos (como Cards para a estante de discos e Modals para detalhes). Além disso, possui um ecossistema independente de jQuery, classes utilitárias ricas para ajustes finos de layout, e um repositório no GitHub altamente ativo, garantindo longevidade e segurança ao projeto.
+* **API Pública:** [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html)
+  * *Por que escolhemos:* Para um sistema de arquivamento de mídia física, a precisão visual é fundamental. A API pública do iTunes permite buscar metadados reais de álbuns (ano, artista, gênero) e, principalmente, URLs de capas de alta resolução de forma gratuita e sem necessidade de autenticação complexa por tokens.
+* **Outras Tecnologias:** HTML5, CSS3, Sass, jQuery, JSON Server, Figma e Stitch.AI.
 
 ## ✅ Checklist | Indicadores de Desempenho (ID)
 
