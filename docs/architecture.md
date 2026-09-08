@@ -101,3 +101,13 @@ Como utilizaremos o **JSON Server** para simular nosso banco de dados relacional
   ],
   "fila": []
 }
+```
+## 7. Versões das Tecnologias Base
+
+Para garantir compatibilidade futura de código e previsibilidade na geração de componentes por assistentes de IA, o projeto adotará as seguintes versões exatas de suas dependências principais:
+
+* **Framework de Layout:** Bootstrap v5.3.3
+* **Biblioteca de Ícones:** Bootstrap Icons v1.11.3
+* **Manipulação de DOM:** jQuery v3.7.1
+* **API Externa:** iTunes Search API (v1)
+* **Mock Backend:** JSON Server v0.17.4
