@@ -1,0 +1,31 @@
+{
+  "name": "minha_discoteca_web-framework_api-_css",
+  "version": "1.0.0",
+  "description": "O **Minha Discoteca** é uma aplicação web responsiva projetada para colecionadores gerenciarem seus acervos de mídias físicas (vinis, CDs e fitas K7) em uma estante virtual elegante, interativa e luxuosa.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joaomarcondespedro/minha_discoteca_web-framework_API-_CSS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Joaomarcondespedro/minha_discoteca_web-framework_API-_CSS/issues"
+  },
+  "homepage": "https://github.com/Joaomarcondespedro/minha_discoteca_web-framework_API-_CSS#readme",
+  "dependencies": {
+    "jquery": "^4.0.0",
+    "uuid": "^14.0.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
