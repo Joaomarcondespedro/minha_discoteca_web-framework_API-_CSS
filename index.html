@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 07 - Bootstrap</title>
+    
+    <!-- Inclui o CSS do Bootstrap instalado via NPM -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    
+    <!-- Inclui o CSS do Bootstrap Icons (Passo 9) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+    <!-- Inclui o CSS Personalizado -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-4">
+        
+        <!-- Primeira Linha: Três Colunas -->
+        <div class="row mb-4 align-items-center">
+            
+            <!-- Coluna 1: Botão do Modal (Passo 3) -->
+            <div class="col text-center p-3 border">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Abrir Modal
+                </button>
+            </div>
+            
+            <!-- Coluna 2: Card Responsivo com Text Utilities (Passo 5 e 7) -->
+            <div class="col p-3 border">
+                <div class="card custom-card">
+                    <img src="https://placehold.co/150x100" class="card-img-top img-fluid" alt="Imagem Genérica">
+                    <div class="card-body">
+                        <!-- fs-5, fw-bold, text-uppercase e text-primary aplicados -->
+                        <h5 class="card-title text-uppercase text-primary fw-bold">Título do Card</h5>
+                        <p class="card-text fs-5">Este é um exemplo de texto no corpo do card.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coluna 3: Flexbox com 5 botões (Passo 8 - Oculta em XS e SM) -->
+            <div class="col d-none d-md-block p-3 border">
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-success btn-sm">B1</button>
+                    <button class="btn btn-danger btn-sm">B2</button>
+                    <button class="btn btn-warning btn-sm">B3</button>
+                    <button class="btn btn-info btn-sm">B4</button>
+                    <button class="btn btn-dark btn-sm">B5</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Segunda Linha: Coluna Única com Ícones (Passo 9) -->
+        <div class="row mb-4">
+            <div class="col-12 text-bg-secondary p-4 text-center fs-2 rounded">
+                <i class="bi bi-alarm me-4"></i>
+                <i class="bi bi-bell me-4"></i>
+                <i class="bi bi-calendar"></i>
+            </div>
+        </div>
+
+        <!-- Terceira Linha: Offset e Order -->
+        <div class="row mb-4 text-center">
+            <div class="col-md-4 offset-md-2 text-bg-info p-3 border">Coluna com Offset (Deslocada)</div>
+            <div class="col-md-4 order-md-3 text-bg-danger p-3 border">Coluna com Ordem 3</div>
+            <div class="col-md-4 order-md-1 text-bg-warning p-3 border">Coluna com Ordem 1</div>
+        </div>
+
+    </div>
+
+    <!-- Modal Interativo (Passo 4) -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Título do Modal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Este é o conteúdo interativo do modal feito com Bootstrap.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inclui os Scripts do Bootstrap (com Popper embutido) -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
