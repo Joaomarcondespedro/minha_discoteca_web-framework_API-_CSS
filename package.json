@@ -7,13 +7,25 @@
   "private": true,
   "scripts": {
     "sass": "sass --load-path=node_modules --quiet-deps --no-source-map --style=compressed assets/scss/main.scss app/style.css",
-    "sass:watch": "sass --watch --load-path=node_modules --quiet-deps --no-source-map --style=compressed assets/scss/main.scss app/style.css"
+    "sass:watch": "sass --watch --load-path=node_modules --quiet-deps --no-source-map --style=compressed assets/scss/main.scss app/style.css",
+    "api": "json-server --watch db.json --port 3000",
+    "lint": "eslint app",
+    "format": "prettier --write \"app/**/*.{js,css,html}\" \"assets/scss/**/*.scss\"",
+    "format:check": "prettier --check \"app/**/*.{js,css,html}\" \"assets/scss/**/*.scss\""
   },
   "dependencies": {
     "bootstrap": "5.3.8",
-    "bootstrap-icons": "1.13.1"
+    "bootstrap-icons": "1.13.1",
+    "jquery": "3.7.1",
+    "jquery-mask-plugin": "1.14.16"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.14.0",
+    "json-server": "0.17.4",
+    "prettier": "^3.10.1",
     "sass": "^1.108.2"
-  }
+  },
+  "type": "module"
 }

@@ -1,0 +1,207 @@
+{
+  "discos": [
+    {
+      "id": "1",
+      "titulo": "Clube da Esquina",
+      "artista": "Milton Nascimento & Lô Borges",
+      "ano": 1972,
+      "genero": "MPB",
+      "formato": "Vinil",
+      "conservacao": "VG+",
+      "caracteristicas": [
+        "Primeira prensagem"
+      ],
+      "catalogo": "EMI 064 422",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/100x100bb.jpg",
+      "faixas": 21,
+      "itunesId": "1473446573",
+      "notas": "Capa dupla com encarte original.",
+      "criadoEm": "2026-09-01T20:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "titulo": "Kind of Blue",
+      "artista": "Miles Davis",
+      "ano": 1959,
+      "genero": "Jazz",
+      "formato": "Vinil",
+      "conservacao": "NM",
+      "caracteristicas": [
+        "Importado"
+      ],
+      "catalogo": "CS 8163",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/100x100bb.jpg",
+      "faixas": 5,
+      "itunesId": "268443092",
+      "notas": "",
+      "criadoEm": "2026-09-04T20:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "titulo": "Rumours",
+      "artista": "Fleetwood Mac",
+      "ano": 1977,
+      "genero": "Rock",
+      "formato": "CD",
+      "conservacao": "NM",
+      "caracteristicas": [],
+      "catalogo": "",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4d/13/ba/4d13bac3-d3d5-7581-2c74-034219eadf2b/081227970949.jpg/100x100bb.jpg",
+      "faixas": 11,
+      "itunesId": "594061854",
+      "notas": "",
+      "criadoEm": "2026-09-07T20:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "titulo": "Random Access Memories",
+      "artista": "Daft Punk",
+      "ano": 2013,
+      "genero": "Eletrônica",
+      "formato": "Vinil",
+      "conservacao": "M",
+      "caracteristicas": [
+        "Edição limitada",
+        "Importado"
+      ],
+      "catalogo": "",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/100x100bb.jpg",
+      "faixas": 14,
+      "itunesId": "617154241",
+      "notas": "",
+      "criadoEm": "2026-09-10T20:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "titulo": "Elis & Tom",
+      "artista": "Elis Regina & Antônio Carlos Jobim",
+      "ano": 1974,
+      "genero": "Bossa nova",
+      "formato": "Vinil",
+      "conservacao": "VG",
+      "caracteristicas": [],
+      "catalogo": "PHILIPS 6349 112",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f1/6e/0c/f16e0cca-3d7a-bd6c-6695-846b583c53b4/18UMGIM64810.rgb.jpg/100x100bb.jpg",
+      "faixas": 14,
+      "itunesId": "1438430508",
+      "notas": "Comprado na feira da Benedito Calixto.",
+      "criadoEm": "2026-10-13T20:00:00.000Z"
+    },
+    {
+      "id": "6",
+      "titulo": "A Tábua de Esmeralda",
+      "artista": "Jorge Ben Jor",
+      "ano": 1974,
+      "genero": "MPB",
+      "formato": "CD",
+      "conservacao": "VG+",
+      "caracteristicas": [],
+      "catalogo": "",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b0/7d/23/b07d2358-9e7b-4dc7-ca5d-b4befa349fab/06UMGIM49335.rgb.jpg/100x100bb.jpg",
+      "faixas": 12,
+      "itunesId": "1444036491",
+      "notas": "",
+      "criadoEm": "2026-10-16T20:00:00.000Z"
+    },
+    {
+      "id": "7",
+      "titulo": "Construção",
+      "artista": "Chico Buarque",
+      "ano": 1971,
+      "genero": "MPB",
+      "formato": "K7",
+      "conservacao": "G",
+      "caracteristicas": [],
+      "catalogo": "",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/100x100bb.jpg",
+      "faixas": 10,
+      "itunesId": "1442845496",
+      "notas": "Fita da coleção do meu pai.",
+      "criadoEm": "2026-10-19T20:00:00.000Z"
+    },
+    {
+      "id": "8",
+      "titulo": "Africa Brasil",
+      "artista": "Jorge Ben Jor",
+      "ano": 1976,
+      "genero": "Samba",
+      "formato": "Vinil",
+      "conservacao": "VG+",
+      "caracteristicas": [
+        "Primeira prensagem"
+      ],
+      "catalogo": "PHILIPS 6349 187",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/100x100bb.jpg",
+      "faixas": 11,
+      "itunesId": "1444050820",
+      "notas": "",
+      "criadoEm": "2026-10-22T20:00:00.000Z"
+    },
+    {
+      "id": "9",
+      "titulo": "Abbey Road",
+      "artista": "The Beatles",
+      "ano": 1969,
+      "genero": "Rock",
+      "formato": "Vinil",
+      "conservacao": "NM",
+      "caracteristicas": [
+        "Importado"
+      ],
+      "catalogo": "PCS 7088",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/100x100bb.jpg",
+      "faixas": 17,
+      "itunesId": "1474815798",
+      "notas": "",
+      "criadoEm": "2026-11-25T20:00:00.000Z"
+    },
+    {
+      "id": "10",
+      "titulo": "The Wall",
+      "artista": "Pink Floyd",
+      "ano": 1979,
+      "genero": "Rock",
+      "formato": "CD",
+      "conservacao": "NM",
+      "caracteristicas": [],
+      "catalogo": "",
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/100x100bb.jpg",
+      "faixas": 27,
+      "itunesId": "1065975633",
+      "notas": "",
+      "criadoEm": "2026-11-01T20:00:00.000Z"
+    }
+  ],
+  "emprestimos": [
+    {
+      "id": "1",
+      "discoId": "2",
+      "amigo": "Rafael Souza",
+      "telefone": "(42) 99876-1234",
+      "email": "rafael@email.com",
+      "dataEmprestimo": "2026-11-10",
+      "dataDevolucao": "2026-11-30",
+      "devolvido": false
+    },
+    {
+      "id": "2",
+      "discoId": "5",
+      "amigo": "Ana Paula Lima",
+      "telefone": "(42) 3623-4455",
+      "email": "",
+      "dataEmprestimo": "2026-10-20",
+      "dataDevolucao": "2026-11-15",
+      "devolvido": false
+    },
+    {
+      "id": "3",
+      "discoId": "9",
+      "amigo": "Carlos Mendes",
+      "telefone": "(41) 98765-4321",
+      "email": "carlos.m@email.com",
+      "dataEmprestimo": "2026-09-01",
+      "dataDevolucao": "2026-09-20",
+      "devolvido": true
+    }
+  ]
+}
