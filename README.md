@@ -33,11 +33,22 @@ Os dados ficam em uma API fake (**JSON Server**) com duas entidades, `discos` e 
 | :--- | :--- | :--- |
 | [bootstrap](https://getbootstrap.com/) | 5.3.8 | Framework CSS (Sass) e componentes JavaScript |
 | [bootstrap-icons](https://icons.getbootstrap.com/) | 1.13.1 | Ícones |
+| [jquery](https://jquery.com/) | 3.7.1 | Eventos, animações e manipulação do DOM |
+| [jquery-mask-plugin](https://igorescobar.github.io/jQuery-Mask-Plugin/) | 1.14.16 | Máscara do telefone no empréstimo |
 | [sass](https://sass-lang.com/) | 1.x (dev) | Compila `assets/scss/` para `app/style.css` |
+| [json-server](https://github.com/typicode/json-server/tree/v0) | 0.17.4 (dev) | API fake com `discos` e `emprestimos` (`db.json`) |
+| [eslint](https://eslint.org/) | 9.x (dev) | Confere erros comuns no JavaScript |
+| [prettier](https://prettier.io/) | 3.x (dev) | Padroniza a formatação do código |
+
+No site publicado, Bootstrap JS, Bootstrap Icons, jQuery e jQuery Mask vêm do CDN jsDelivr, nas mesmas versões do `package.json`.
+
+API pública: [iTunes Search API](https://performance-partners.apple.com/search-api) (sem chave).
 
 ## Site em produção
 
-_A partir da Entrega 3._
+- https://joaomarcondespedro.github.io/minha_discoteca_web-framework_API-_CSS/
+
+O GitHub Pages só serve arquivos estáticos. Para o site publicado listar e gravar discos, rode o JSON Server no seu computador (`npm run api`): o JavaScript roda no navegador e conversa com `http://localhost:3000`. Sem ele, as páginas mostram um aviso e a busca no iTunes continua funcionando.
 
 ## Checklist de Funcionalidades
 
@@ -56,29 +67,29 @@ _A partir da Entrega 3._
 
 ### RA2 - Realizar tratamento de formulários e aplicar validações customizadas no lado cliente
 
-- [ ] ID 11 - Implementa validação HTML nativa (campos obrigatórios, tipos, limites de caracteres) com mensagens de erro/sucesso no lado cliente.
-- [ ] ID 12 - Aplica expressões regulares (REGEX) para validações customizadas (e-mail, telefone, datas, etc.)
-- [ ] ID 13 - Utiliza elementos de seleção em formulários (checkbox, radio, select) para coleta de dados.
-- [ ] ID 14 - Implementa leitura e escrita no Web Storage (localStorage/sessionStorage) para persistir dados localmente.
+- [x] ID 11 - Implementa validação HTML nativa (campos obrigatórios, tipos, limites de caracteres) com mensagens de erro/sucesso no lado cliente.
+- [x] ID 12 - Aplica expressões regulares (REGEX) para validações customizadas (e-mail, telefone, datas, etc.)
+- [x] ID 13 - Utiliza elementos de seleção em formulários (checkbox, radio, select) para coleta de dados.
+- [x] ID 14 - Implementa leitura e escrita no Web Storage (localStorage/sessionStorage) para persistir dados localmente.
 
 ### RA3 - Aplicar ferramentas para otimização do processo de desenvolvimento web
 
 - [x] ID 15 - Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
 - [x] ID 16 - Utiliza boas práticas de versionamento no Git/GitHub (branch main ou branches específicos, uso de .gitignore).
-- [ ] ID 17 - Mantém um README.md padronizado, conforme template da disciplina, com checklist preenchido.
-- [ ] ID 18 - Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido.
-- [ ] ID 19 - Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
+- [x] ID 17 - Mantém um README.md padronizado, conforme template da disciplina, com checklist preenchido.
+- [x] ID 18 - Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido.
+- [x] ID 19 - Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
 
 ### RA4 - Aplicar bibliotecas de funções e componentes em JavaScript para aprimorar a interatividade de páginas web
 
-- [ ] ID 20 - Utiliza jQuery para manipulação do DOM e interatividade (eventos, animações, manipulação de elementos)
-- [ ] ID 21 - Integra e configura um plugin jQuery relevante (ex.: jQuery Mask Plugin) ou outra biblioteca de funções.
+- [x] ID 20 - Utiliza jQuery para manipulação do DOM e interatividade (eventos, animações, manipulação de elementos)
+- [x] ID 21 - Integra e configura um plugin jQuery relevante (ex.: jQuery Mask Plugin) ou outra biblioteca de funções.
 
 ### RA5 - Efetuar requisições assíncronas para uma API fake e APIs públicas, permitindo a obtenção e manipulação de dados dinamicamente
 
-- [ ] ID 22 - Realiza requisições assíncronas para uma API fake (ex.: JSON Server) para persistir dados de um formulário.
-- [ ] ID 23 - Realiza requisições assíncronas para uma API fake para exibir dados na página.
-- [ ] ID 24 - Realiza requisições assíncronas para APIs públicas reais (OpenWeather, ViaCEP etc.), exibindo os dados e tratando erros.
+- [x] ID 22 - Realiza requisições assíncronas para uma API fake (ex.: JSON Server) para persistir dados de um formulário.
+- [x] ID 23 - Realiza requisições assíncronas para uma API fake para exibir dados na página.
+- [x] ID 24 - Realiza requisições assíncronas para APIs públicas reais (OpenWeather, ViaCEP etc.), exibindo os dados e tratando erros.
 
 ## Instruções de Execução
 
@@ -90,6 +101,12 @@ cd minha_discoteca_web-framework_API-_CSS
 npm install
 ```
 
+Em um terminal, suba a API fake (deixe aberto):
+
+```bash
+npm run api
+```
+
 Abra a pasta no VS Code, clique com o botão direito em `app/index.html` e escolha **Open with Live Server**.
 
 Para editar os estilos, rode o Sass em modo de observação (ele recompila `app/style.css` a cada alteração nos `.scss`):
@@ -97,6 +114,15 @@ Para editar os estilos, rode o Sass em modo de observação (ele recompila `app/
 ```bash
 npm run sass:watch
 ```
+
+Qualidade do código:
+
+```bash
+npm run lint          # ESLint
+npm run format        # Prettier
+```
+
+Dica: antes de testar cadastros, faça uma cópia do `db.json` para voltar os dados ao estado original depois.
 
 ## Telas da Aplicação
 
