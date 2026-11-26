@@ -124,6 +124,20 @@ npm run format        # Prettier
 
 Dica: antes de testar cadastros, faça uma cópia do `db.json` para voltar os dados ao estado original depois.
 
+### Se o JSON Server não subir
+
+No Windows, o jeito mais simples é dar dois cliques em **`iniciar-api.cmd`**, na raiz do projeto: ele entra na pasta certa, roda `npm install` na primeira vez e sobe a API. Deixe a janela aberta enquanto usa o site.
+
+| O que aparece | Causa | Como resolver |
+| :--- | :--- | :--- |
+| `npm error enoent Could not read package.json` ou `Missing script: "api"` | O terminal está na pasta errada (por exemplo, a pasta acima do projeto) | `cd minha_discoteca_web-framework_API-_CSS` (ou `...-main`, se baixou o ZIP) e rode de novo |
+| `'json-server' não é reconhecido` | Faltou o `npm install` nesta pasta (o ZIP do GitHub não traz a `node_modules`) | `npm install` e depois `npm run api` |
+| `npm.ps1 não pode ser carregado porque a execução de scripts foi desabilitada` | Política do PowerShell no Windows | Use `npm.cmd run api`, ou troque o terminal do VS Code para **Command Prompt**, ou rode uma vez `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| `'npm' não é reconhecido` | Node.js não instalado | Instale o Node.js LTS em https://nodejs.org e reabra o VS Code |
+| `EADDRINUSE :::3000` | Já existe algo na porta 3000 (talvez outro JSON Server aberto) | Feche o outro terminal ou rode `npx json-server --watch db.json --port 3000` depois de encerrar o anterior |
+
+Para conferir se a API está no ar, abra http://localhost:3000/discos no navegador: deve aparecer a lista de discos em JSON.
+
 ## Telas da Aplicação
 
 | Desktop | Celular |

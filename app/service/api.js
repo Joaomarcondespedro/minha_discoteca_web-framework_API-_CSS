@@ -6,7 +6,7 @@
 export const API_URL = 'http://localhost:3000';
 
 export const MSG_SEM_API =
-  'Não foi possível falar com o servidor de dados. Confira se o JSON Server está rodando com <code>npm run api</code> e recarregue a página.';
+  'Não foi possível falar com o servidor de dados. Na pasta do projeto, rode <code>npm install</code> e depois <code>npm run api</code> (no Windows, dê dois cliques em <code>iniciar-api.cmd</code>) e recarregue a página.';
 
 /**
  * Faz a requisição e devolve o JSON da resposta.
