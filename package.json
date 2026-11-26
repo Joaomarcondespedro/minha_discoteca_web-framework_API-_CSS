@@ -1,0 +1,19 @@
+{
+  "name": "minha-discoteca",
+  "version": "1.0.0",
+  "description": "Estante virtual para colecionadores de vinil, CD e fita K7.",
+  "author": "João Pedro Marcondes",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "sass": "sass --load-path=node_modules --quiet-deps --no-source-map --style=compressed assets/scss/main.scss app/style.css",
+    "sass:watch": "sass --watch --load-path=node_modules --quiet-deps --no-source-map --style=compressed assets/scss/main.scss app/style.css"
+  },
+  "dependencies": {
+    "bootstrap": "5.3.8",
+    "bootstrap-icons": "1.13.1"
+  },
+  "devDependencies": {
+    "sass": "^1.108.2"
+  }
+}
