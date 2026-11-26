@@ -83,7 +83,7 @@ erDiagram
 | `formato` | string | sim | `Vinil`, `CD` ou `K7` (RN03). |
 | `conservacao` | string | sim | Escala de colecionador: `M` (mint), `NM`, `VG+`, `VG`, `G`. |
 | `caracteristicas` | string[] | não | `Primeira prensagem`, `Importado`, `Autografado`, `Edição limitada`. |
-| `catalogo` | string | não | Regex RN04: `/^[A-Z]{2,5}[- ]?\d{3,6}( ?\d{1,4})?$/i`. |
+| `catalogo` | string | não | Regex RN04: `/^[A-Z]{2,8}[- ]?\d{3,6}( ?\d{1,4})?$/i`. |
 | `capaUrl` | string | não | URL da capa vinda do iTunes. |
 | `faixas` | number | não | Número de faixas. |
 | `itunesId` | string | não | `collectionId` do iTunes. |
@@ -167,14 +167,14 @@ Contraste: texto Tinta sobre Capa interna = 15,1:1; texto branco sobre Cobalto =
 
 | Papel | Fonte | Pesos | Por quê |
 | :--- | :--- | :--- | :--- |
-| Títulos (display) | **Anybody** | 700–800, largura expandida (`font-stretch: 125%`) | Fonte de largura variável que lembra a tipografia larga das lombadas e dos selos de LP. |
+| Títulos (display) | **Anybody** | 700–800, largura expandida (`font-stretch` de 110% a 120%) | Fonte de largura variável que lembra a tipografia larga das lombadas e dos selos de LP. |
 | Texto e formulários | **Instrument Sans** | 400, 500, 600 | Sans-serif neutra, ótima leitura em tamanhos pequenos (metadados do disco). |
 
 Escala tipográfica fluida com `clamp()` (ID 08), gerada pela função Sass `fluido($min, $max)`:
 
 | Elemento | Mínimo (celular) | Máximo (desktop) |
 | :--- | :--- | :--- |
-| `h1` / hero | 2.25rem | 4.5rem |
+| `h1` / hero | 2.25rem | 3.75rem |
 | `h2` | 1.6rem | 2.5rem |
 | `h3` | 1.25rem | 1.6rem |
 | corpo | 1rem | 1.0625rem |

@@ -52,7 +52,7 @@ Colecionadores de discos de 18 a 60 anos, frequentadores de sebos e feiras de vi
 | RN01 | Título, artista, formato e estado de conservação são obrigatórios no cadastro de disco. |
 | RN02 | O ano de lançamento, quando informado, deve estar entre **1900** e o ano atual. |
 | RN03 | O formato é um destes três: **Vinil**, **CD** ou **K7**. |
-| RN04 | O código de catálogo, quando informado, segue o padrão de prensagem: 2 a 5 letras, espaço ou hífen opcional e 3 a 6 dígitos (ex.: `EMI-064 422`, `ODEON 3803`, `SMOFB3789`). |
+| RN04 | O código de catálogo, quando informado, segue o padrão de prensagem: 2 a 8 letras, espaço ou hífen opcional e 3 a 6 dígitos (ex.: `EMI-064 422`, `ODEON 3803`, `SMOFB3789`). |
 | RN05 | O telefone do amigo no empréstimo segue o padrão brasileiro `(00) 00000-0000` ou `(00) 0000-0000`. |
 | RN06 | A data prevista de devolução não pode ser anterior à data do empréstimo. |
 | RN07 | Um disco que já está emprestado (e não devolvido) não pode ser emprestado de novo. |

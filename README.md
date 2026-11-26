@@ -29,7 +29,11 @@ Os dados ficam em uma API fake (**JSON Server**) com duas entidades, `discos` e 
 
 ## Dependências
 
-_A partir da Entrega 2._
+| Pacote | Versão | Uso |
+| :--- | :--- | :--- |
+| [bootstrap](https://getbootstrap.com/) | 5.3.8 | Framework CSS (Sass) e componentes JavaScript |
+| [bootstrap-icons](https://icons.getbootstrap.com/) | 1.13.1 | Ícones |
+| [sass](https://sass-lang.com/) | 1.x (dev) | Compila `assets/scss/` para `app/style.css` |
 
 ## Site em produção
 
@@ -40,15 +44,15 @@ _A partir da Entrega 3._
 ### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos
 
 - [ ] ID 01 - Prototipa interfaces adaptáveis para no mínimo os tamanhos de tela mobile e desktop, usando ferramentas de design tradicionais (Figma, Quant UX ou Sketch) ou IA (Stitch).
-- [ ] ID 02 - Implementa layout responsivo com Framework CSS (Bootstrap, Materialize) usando Flexbox ou Grid do próprio framework.
-- [ ] ID 03 - Implementa layout responsivo com CSS puro, usando Flexbox ou Grid Layout.
-- [ ] ID 04 - Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, carousel).
-- [ ] ID 05 - Cria layout fluido usando unidades relativas (vw, vh, %, em, rem) no lugar de unidades fixas (px).
-- [ ] ID 06 - Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
-- [ ] ID 07 - Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
-- [ ] ID 08 - Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (função clamp() + unidades relativas).
-- [ ] ID 09 – Aplica técnicas de responsividade de imagens usando CSS (object-fit, containers com unidades relativas).
-- [ ] ID 10 – Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (srcset, picture, ou parâmetros do Cloudinary).
+- [x] ID 02 - Implementa layout responsivo com Framework CSS (Bootstrap, Materialize) usando Flexbox ou Grid do próprio framework.
+- [x] ID 03 - Implementa layout responsivo com CSS puro, usando Flexbox ou Grid Layout.
+- [x] ID 04 - Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, carousel).
+- [x] ID 05 - Cria layout fluido usando unidades relativas (vw, vh, %, em, rem) no lugar de unidades fixas (px).
+- [x] ID 06 - Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
+- [x] ID 07 - Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
+- [x] ID 08 - Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (função clamp() + unidades relativas).
+- [x] ID 09 – Aplica técnicas de responsividade de imagens usando CSS (object-fit, containers com unidades relativas).
+- [x] ID 10 – Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (srcset, picture, ou parâmetros do Cloudinary).
 
 ### RA2 - Realizar tratamento de formulários e aplicar validações customizadas no lado cliente
 
@@ -59,8 +63,8 @@ _A partir da Entrega 3._
 
 ### RA3 - Aplicar ferramentas para otimização do processo de desenvolvimento web
 
-- [ ] ID 15 - Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
-- [ ] ID 16 - Utiliza boas práticas de versionamento no Git/GitHub (branch main ou branches específicos, uso de .gitignore).
+- [x] ID 15 - Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
+- [x] ID 16 - Utiliza boas práticas de versionamento no Git/GitHub (branch main ou branches específicos, uso de .gitignore).
 - [ ] ID 17 - Mantém um README.md padronizado, conforme template da disciplina, com checklist preenchido.
 - [ ] ID 18 - Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido.
 - [ ] ID 19 - Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
@@ -78,8 +82,27 @@ _A partir da Entrega 3._
 
 ## Instruções de Execução
 
-_A partir da Entrega 2._
+Pré-requisitos: [Node.js LTS](https://nodejs.org/) (22.x), Git e VS Code com a extensão **Live Server**.
+
+```bash
+git clone https://github.com/Joaomarcondespedro/minha_discoteca_web-framework_API-_CSS.git
+cd minha_discoteca_web-framework_API-_CSS
+npm install
+```
+
+Abra a pasta no VS Code, clique com o botão direito em `app/index.html` e escolha **Open with Live Server**.
+
+Para editar os estilos, rode o Sass em modo de observação (ele recompila `app/style.css` a cada alteração nos `.scss`):
+
+```bash
+npm run sass:watch
+```
 
 ## Telas da Aplicação
 
-_A partir da Entrega 2._
+| Desktop | Celular |
+| :---: | :---: |
+| ![Início no desktop](docs/img/inicio-desktop.webp) | ![Início no celular](docs/img/inicio-mobile.webp) |
+| ![Acervo no desktop](docs/img/acervo-desktop.webp) | ![Cadastro no celular](docs/img/cadastro-mobile.webp) |
+| ![Empréstimos no desktop](docs/img/emprestimos-desktop.webp) | ![Empréstimos no celular](docs/img/emprestimos-mobile.webp) |
+| ![Ficha do disco no modal](docs/img/ficha-desktop.webp) | |
