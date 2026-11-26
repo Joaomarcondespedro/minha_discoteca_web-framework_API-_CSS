@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acervo — Minha Discoteca</title>
+  <meta name="description" content="Todos os discos da sua coleção, em grade de capas ou em lista.">
+  <meta name="theme-color" content="#2340a8">
+  <link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Instrument+Sans:wght@400..700&display=swap">
+  <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="acervo.css">
+</head>
+<body>
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-warning z-3" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Navbar + Offcanvas: componentes do Bootstrap (ID 04) -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-discoteca sticky-top" aria-label="Navegação principal">
+    <div class="container-xl">
+      <a class="navbar-brand" href="../../"><span class="logo-selo" aria-hidden="true"></span>Minha Discoteca</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-primary" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalTitulo">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h5" id="menuPrincipalTitulo">Minha Discoteca</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar menu"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="../.././"><i class="bi bi-house me-2 d-lg-none" aria-hidden="true"></i>Início</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../pages/acervo/"><i class="bi bi-grid-3x3-gap me-2 d-lg-none" aria-hidden="true"></i>Acervo</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../pages/cadastro/"><i class="bi bi-plus-circle me-2 d-lg-none" aria-hidden="true"></i>Cadastrar disco</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../pages/emprestimos/"><i class="bi bi-people me-2 d-lg-none" aria-hidden="true"></i>Empréstimos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="conteudo" class="container-xl">
+    <header class="cabecalho-pagina">
+      <h1>Acervo</h1>
+      <p class="mb-0">Todos os seus discos. Busque pelo título ou artista e filtre por formato para conferir rapidamente se um disco já é seu.</p>
+    </header>
+
+    <!-- Barra de filtros: grid do Bootstrap (ID 02) -->
+    <form class="row g-2 align-items-center mb-4" id="formFiltros" role="search" aria-label="Filtrar acervo">
+      <div class="col-12 col-md-6">
+        <label class="visually-hidden" for="filtroBusca">Buscar por título ou artista</label>
+        <div class="input-group">
+          <span class="input-group-text bg-white"><i class="bi bi-search" aria-hidden="true"></i></span>
+          <input class="form-control" type="search" id="filtroBusca" placeholder="Buscar por título ou artista" autocomplete="off">
+        </div>
+      </div>
+      <div class="col-7 col-md-3">
+        <label class="visually-hidden" for="filtroFormato">Formato</label>
+        <select class="form-select" id="filtroFormato">
+          <option value="">Todos os formatos</option>
+          <option>Vinil</option>
+          <option>CD</option>
+          <option>K7</option>
+        </select>
+      </div>
+      <div class="col-5 col-md-3 d-flex justify-content-end">
+        <div class="btn-group" role="group" aria-label="Visualização">
+          <input type="radio" class="btn-check" name="visualizacao" id="verGrade" value="grade" checked>
+          <label class="btn btn-outline-primary" for="verGrade" title="Grade de capas"><i class="bi bi-grid-3x3-gap" aria-hidden="true"></i><span class="visually-hidden">Grade</span></label>
+          <input type="radio" class="btn-check" name="visualizacao" id="verLista" value="lista">
+          <label class="btn btn-outline-primary" for="verLista" title="Lista"><i class="bi bi-list-ul" aria-hidden="true"></i><span class="visually-hidden">Lista</span></label>
+        </div>
+      </div>
+    </form>
+
+    <p class="text-body-secondary" id="contagemDiscos" aria-live="polite">10 discos</p>
+
+    <!-- Estante: grid do Bootstrap (ID 02) com cards (ID 04) -->
+    <div class="row g-3 g-md-4 estante" id="estante">
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Clube da Esquina">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Clube da Esquina</a></h3>
+                <p class="card-text mb-2">Milton Nascimento &amp; Lô Borges, 1972</p>
+                <span class="badge badge-formato">Vinil</span>
+                <span class="badge badge-conservacao">VG+</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Kind of Blue">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Kind of Blue</a></h3>
+                <p class="card-text mb-2">Miles Davis, 1959</p>
+                <span class="badge badge-formato">Vinil</span>
+                <span class="badge badge-conservacao">NM</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4d/13/ba/4d13bac3-d3d5-7581-2c74-034219eadf2b/081227970949.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4d/13/ba/4d13bac3-d3d5-7581-2c74-034219eadf2b/081227970949.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4d/13/ba/4d13bac3-d3d5-7581-2c74-034219eadf2b/081227970949.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4d/13/ba/4d13bac3-d3d5-7581-2c74-034219eadf2b/081227970949.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Rumours">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Rumours</a></h3>
+                <p class="card-text mb-2">Fleetwood Mac, 1977</p>
+                <span class="badge badge-formato">CD</span>
+                <span class="badge badge-conservacao">NM</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Random Access Memories">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Random Access Memories</a></h3>
+                <p class="card-text mb-2">Daft Punk, 2013</p>
+                <span class="badge badge-formato">Vinil</span>
+                <span class="badge badge-conservacao">M</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f1/6e/0c/f16e0cca-3d7a-bd6c-6695-846b583c53b4/18UMGIM64810.rgb.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f1/6e/0c/f16e0cca-3d7a-bd6c-6695-846b583c53b4/18UMGIM64810.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f1/6e/0c/f16e0cca-3d7a-bd6c-6695-846b583c53b4/18UMGIM64810.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f1/6e/0c/f16e0cca-3d7a-bd6c-6695-846b583c53b4/18UMGIM64810.rgb.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Elis &amp; Tom">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Elis &amp; Tom</a></h3>
+                <p class="card-text mb-2">Elis Regina &amp; Antônio Carlos Jobim, 1974</p>
+                <span class="badge badge-formato">Vinil</span>
+                <span class="badge badge-conservacao">VG</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b0/7d/23/b07d2358-9e7b-4dc7-ca5d-b4befa349fab/06UMGIM49335.rgb.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b0/7d/23/b07d2358-9e7b-4dc7-ca5d-b4befa349fab/06UMGIM49335.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b0/7d/23/b07d2358-9e7b-4dc7-ca5d-b4befa349fab/06UMGIM49335.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b0/7d/23/b07d2358-9e7b-4dc7-ca5d-b4befa349fab/06UMGIM49335.rgb.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum A Tábua de Esmeralda">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">A Tábua de Esmeralda</a></h3>
+                <p class="card-text mb-2">Jorge Ben Jor, 1974</p>
+                <span class="badge badge-formato">CD</span>
+                <span class="badge badge-conservacao">VG+</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Construção">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Construção</a></h3>
+                <p class="card-text mb-2">Chico Buarque, 1971</p>
+                <span class="badge badge-formato">K7</span>
+                <span class="badge badge-conservacao">G</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Africa Brasil">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Africa Brasil</a></h3>
+                <p class="card-text mb-2">Jorge Ben Jor, 1976</p>
+                <span class="badge badge-formato">Vinil</span>
+                <span class="badge badge-conservacao">VG+</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum Abbey Road">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">Abbey Road</a></h3>
+                <p class="card-text mb-2">The Beatles, 1969</p>
+                <span class="badge badge-formato">Vinil</span>
+                <span class="badge badge-conservacao">NM</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3">
+            <article class="card card-disco">
+              <div class="capa-moldura">
+                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/400x400bb.webp"
+                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.webp 600w"
+                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
+                  width="400" height="400" loading="lazy" alt="Capa do álbum The Wall">
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalDisco">The Wall</a></h3>
+                <p class="card-text mb-2">Pink Floyd, 1979</p>
+                <span class="badge badge-formato">CD</span>
+                <span class="badge badge-conservacao">NM</span>
+              </div>
+            </article>
+          </div>
+    </div>
+  </main>
+
+  <!-- Ficha do disco: Modal do Bootstrap (componente JavaScript, ID 04) -->
+  <div class="modal fade ficha-disco" id="modalDisco" tabindex="-1" aria-labelledby="modalDiscoTitulo" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar ficha"></button>
+        </div>
+        <div class="modal-body px-4">
+            <div class="row g-4 align-items-center">
+              <div class="col-md-5">
+                <div class="ficha-arte">
+                  <div class="ficha-vinil" aria-hidden="true"></div>
+                  <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/600x600bb.webp" srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/16/fe/be/16febeb7-b081-c66c-a26b-1f7cd097bd45/19UMGIM66061.rgb.jpg/600x600bb.webp 600w" sizes="18rem" width="600" height="600" alt="Capa do álbum Clube da Esquina">
+                </div>
+              </div>
+              <div class="col-md-7">
+                <h2 class="h3 mb-1" id="modalDiscoTitulo">Clube da Esquina</h2>
+                <p class="mb-3">Milton Nascimento &amp; Lô Borges</p>
+                <dl class="row mb-0">
+                  <dt class="col-5">Ano</dt><dd class="col-7">1972</dd>
+                  <dt class="col-5">Gênero</dt><dd class="col-7">MPB</dd>
+                  <dt class="col-5">Formato</dt><dd class="col-7">Vinil</dd>
+                  <dt class="col-5">Conservação</dt><dd class="col-7">VG+</dd>
+                  <dt class="col-5">Catálogo</dt><dd class="col-7">EMI 064 422</dd>
+                  <dt class="col-5">Faixas</dt><dd class="col-7">21</dd>
+                </dl>
+                <p class="mt-3 mb-0">Capa dupla com encarte original.</p>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-danger me-auto" id="btnExcluir"><i class="bi bi-trash3 me-1" aria-hidden="true"></i>Excluir</button>
+          <a class="btn btn-primary" id="btnEditar" href="../cadastro/"><i class="bi bi-pencil me-1" aria-hidden="true"></i>Editar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé com CSS Grid próprio (ID 03) -->
+  <footer class="rodape">
+    <div class="container-xl rodape-grade">
+      <div>
+        <p class="rodape-marca"><span class="logo-selo" aria-hidden="true"></span>Minha Discoteca</p>
+        <p class="mb-0">A estante virtual de quem coleciona vinil, CD e fita K7. Projeto da disciplina de Desenvolvimento Web, por João Pedro Marcondes.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <h2 class="h6 text-white">Páginas</h2>
+        <ul class="list-unstyled mb-0">
+          <li><a href="../../pages/acervo/">Acervo</a></li>
+          <li><a href="../../pages/cadastro/">Cadastrar disco</a></li>
+          <li><a href="../../pages/emprestimos/">Empréstimos</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="h6 text-white">Dados</h2>
+        <p class="mb-0">Capas e informações dos álbuns pela <a href="https://performance-partners.apple.com/search-api">iTunes Search API</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

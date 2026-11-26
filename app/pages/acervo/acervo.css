@@ -1,0 +1,42 @@
+/* =============================================================
+   Acervo — estilos só desta página (CSS puro)
+   ============================================================= */
+
+/* Modo lista: os mesmos cards da grade viram linhas.
+   Layout com CSS Grid próprio (ID 03), em rem (ID 05). */
+.estante.estante--lista > * {
+  width: 100%;
+}
+
+.estante--lista .card-disco {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background-color: #fff;
+  border-radius: 0.75rem;
+}
+
+.estante--lista .card-disco .card-body {
+  padding: 0;
+}
+
+.estante--lista .card-disco .card-text {
+  margin-bottom: 0.25rem !important;
+}
+
+/* A partir de 48rem (768px), a linha ganha uma coluna para os selos */
+@media (min-width: 48rem) {
+  .estante--lista .card-disco .card-body {
+    display: grid;
+    grid-template-columns: 2fr 2fr auto auto;
+    align-items: center;
+    gap: 0.5rem 1rem;
+  }
+
+  .estante--lista .card-disco .card-title,
+  .estante--lista .card-disco .card-text {
+    margin: 0 !important;
+  }
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Empréstimos — Minha Discoteca</title>
+  <meta name="description" content="Controle para quem você emprestou cada disco e quando ele volta.">
+  <meta name="theme-color" content="#2340a8">
+  <link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Instrument+Sans:wght@400..700&display=swap">
+  <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="emprestimos.css">
+</head>
+<body>
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-warning z-3" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Navbar + Offcanvas: componentes do Bootstrap (ID 04) -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-discoteca sticky-top" aria-label="Navegação principal">
+    <div class="container-xl">
+      <a class="navbar-brand" href="../../"><span class="logo-selo" aria-hidden="true"></span>Minha Discoteca</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-primary" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalTitulo">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h5" id="menuPrincipalTitulo">Minha Discoteca</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar menu"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="../.././"><i class="bi bi-house me-2 d-lg-none" aria-hidden="true"></i>Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../pages/acervo/"><i class="bi bi-grid-3x3-gap me-2 d-lg-none" aria-hidden="true"></i>Acervo</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../pages/cadastro/"><i class="bi bi-plus-circle me-2 d-lg-none" aria-hidden="true"></i>Cadastrar disco</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../pages/emprestimos/"><i class="bi bi-people me-2 d-lg-none" aria-hidden="true"></i>Empréstimos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="conteudo" class="container-xl">
+    <header class="cabecalho-pagina">
+      <h1>Empréstimos</h1>
+      <p class="mb-0">Anote para quem você emprestou cada disco e quando ele deve voltar. Os atrasados aparecem em vermelho.</p>
+    </header>
+
+    <div class="row g-4 align-items-start">
+      <section class="col-lg-5" aria-labelledby="tituloNovoEmprestimo">
+        <form class="painel needs-validation" id="formEmprestimo" novalidate>
+          <h2 class="h3" id="tituloNovoEmprestimo">Novo empréstimo</h2>
+          <div class="mb-3">
+            <label class="form-label" for="discoId">Disco <span class="text-danger">*</span></label>
+            <select class="form-select" id="discoId" name="discoId" required>
+              <option value="">Escolha um disco do acervo…</option>
+                <option value="1">Clube da Esquina — Milton Nascimento &amp; Lô Borges</option>
+                <option value="2">Kind of Blue — Miles Davis</option>
+                <option value="3">Rumours — Fleetwood Mac</option>
+                <option value="4">Random Access Memories — Daft Punk</option>
+                <option value="5">Elis &amp; Tom — Elis Regina &amp; Antônio Carlos Jobim</option>
+                <option value="6">A Tábua de Esmeralda — Jorge Ben Jor</option>
+                <option value="7">Construção — Chico Buarque</option>
+                <option value="8">Africa Brasil — Jorge Ben Jor</option>
+                <option value="9">Abbey Road — The Beatles</option>
+                <option value="10">The Wall — Pink Floyd</option>
+            </select>
+            <div class="invalid-feedback" id="discoErro">Escolha o disco que vai emprestar.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="amigo">Nome do amigo <span class="text-danger">*</span></label>
+            <input class="form-control" id="amigo" name="amigo" required minlength="5" maxlength="80" autocomplete="off" placeholder="Nome e sobrenome">
+            <div class="invalid-feedback">Informe nome e sobrenome.</div>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6">
+              <label class="form-label" for="telefone">Telefone <span class="text-danger">*</span></label>
+              <input class="form-control" type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000" inputmode="tel" autocomplete="off">
+              <div class="invalid-feedback">Use o formato (00) 00000-0000.</div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" for="email">E-mail</label>
+              <input class="form-control" type="email" id="email" name="email" maxlength="120" placeholder="nome@email.com" autocomplete="off">
+              <div class="invalid-feedback">Confira o e-mail, como nome@email.com.</div>
+            </div>
+          </div>
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <label class="form-label" for="dataEmprestimo">Emprestado em <span class="text-danger">*</span></label>
+              <input class="form-control" type="date" id="dataEmprestimo" name="dataEmprestimo" required>
+              <div class="invalid-feedback">Informe a data.</div>
+            </div>
+            <div class="col-6">
+              <label class="form-label" for="dataDevolucao">Devolver até <span class="text-danger">*</span></label>
+              <input class="form-control" type="date" id="dataDevolucao" name="dataDevolucao" required>
+              <div class="invalid-feedback" id="devolucaoErro">A devolução não pode ser antes do empréstimo.</div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg w-100" type="submit"><i class="bi bi-box-arrow-up-right me-1" aria-hidden="true"></i>Registrar empréstimo</button>
+        </form>
+      </section>
+
+      <section class="col-lg-7" aria-labelledby="tituloLista">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <h2 class="h3 mb-0" id="tituloLista">Histórico</h2>
+          <div class="btn-group btn-group-sm" role="group" aria-label="Filtrar empréstimos">
+            <input type="radio" class="btn-check" name="filtroSituacao" id="sitTodos" value="todos" checked>
+            <label class="btn btn-outline-primary" for="sitTodos">Todos</label>
+            <input type="radio" class="btn-check" name="filtroSituacao" id="sitAbertos" value="abertos">
+            <label class="btn btn-outline-primary" for="sitAbertos">Com amigos</label>
+            <input type="radio" class="btn-check" name="filtroSituacao" id="sitDevolvidos" value="devolvidos">
+            <label class="btn btn-outline-primary" for="sitDevolvidos">Devolvidos</label>
+          </div>
+        </div>
+        <!-- Tabela do Bootstrap, com rolagem horizontal no celular -->
+        <div class="painel p-0 table-responsive">
+          <table class="table table-hover align-middle mb-0 tabela-emprestimos">
+            <thead>
+              <tr><th scope="col">Disco</th><th scope="col">Amigo</th><th scope="col">Devolução</th><th scope="col">Situação</th><th scope="col"><span class="visually-hidden">Ações</span></th></tr>
+            </thead>
+            <tbody id="corpoTabela">
+              <tr>
+                <td><strong>Kind of Blue</strong><br><span class="small text-body-secondary">Miles Davis</span></td>
+                <td>Rafael Souza<br><span class="small text-body-secondary telefone">(42) 99876-1234</span></td>
+                <td>30/11/2026</td>
+                <td><span class="badge text-bg-warning">Emprestado</span></td>
+                <td class="text-end"><button class="btn btn-sm btn-outline-success text-nowrap" type="button">Recebi de volta</button></td>
+              </tr>
+              <tr>
+                <td><strong>Elis &amp; Tom</strong><br><span class="small text-body-secondary">Elis Regina &amp; Antônio Carlos Jobim</span></td>
+                <td>Ana Paula Lima<br><span class="small text-body-secondary telefone">(42) 3623-4455</span></td>
+                <td>15/11/2026</td>
+                <td><span class="badge text-bg-danger">Atrasado</span></td>
+                <td class="text-end"><button class="btn btn-sm btn-outline-success text-nowrap" type="button">Recebi de volta</button></td>
+              </tr>
+              <tr>
+                <td><strong>Abbey Road</strong><br><span class="small text-body-secondary">The Beatles</span></td>
+                <td>Carlos Mendes<br><span class="small text-body-secondary telefone">(41) 98765-4321</span></td>
+                <td>20/09/2026</td>
+                <td><span class="badge text-bg-success">Devolvido</span></td>
+                <td class="text-end"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Toast do Bootstrap para o retorno de sucesso (ID 04 / ID 11) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-success border-0" id="toastEmprestimo" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastEmprestimoTexto">Salvo.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar aviso"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé com CSS Grid próprio (ID 03) -->
+  <footer class="rodape">
+    <div class="container-xl rodape-grade">
+      <div>
+        <p class="rodape-marca"><span class="logo-selo" aria-hidden="true"></span>Minha Discoteca</p>
+        <p class="mb-0">A estante virtual de quem coleciona vinil, CD e fita K7. Projeto da disciplina de Desenvolvimento Web, por João Pedro Marcondes.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <h2 class="h6 text-white">Páginas</h2>
+        <ul class="list-unstyled mb-0">
+          <li><a href="../../pages/acervo/">Acervo</a></li>
+          <li><a href="../../pages/cadastro/">Cadastrar disco</a></li>
+          <li><a href="../../pages/emprestimos/">Empréstimos</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="h6 text-white">Dados</h2>
+        <p class="mb-0">Capas e informações dos álbuns pela <a href="https://performance-partners.apple.com/search-api">iTunes Search API</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

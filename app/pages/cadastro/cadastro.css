@@ -1,0 +1,65 @@
+/* =============================================================
+   Cadastro — estilos só desta página (CSS puro)
+   ============================================================= */
+
+.capa-previa {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: #dfe3ee;
+}
+
+/* object-fit: a capa preenche o quadrado sem distorcer (ID 09) */
+.capa-previa .capa-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Resultados do iTunes: miniatura + texto lado a lado com Flexbox próprio (ID 03) */
+.resultado-itunes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: none;
+  text-align: start;
+}
+
+.resultado-itunes:hover,
+.resultado-itunes:focus-visible {
+  background-color: rgba(35, 64, 168, 0.08);
+}
+
+.resultado-itunes img {
+  width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.resultados-busca {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Feedback do grupo de radios do formato (o Bootstrap só mostra para .form-check) */
+.was-validated .selo-opcao:has(:invalid) ~ .invalid-feedback {
+  display: block;
+}
+
+/* Destaque dos campos preenchidos pelo iTunes (classe colocada pelo jQuery) */
+.form-control,
+.form-select {
+  transition: background-color 0.6s ease;
+}
+
+.campo-preenchido {
+  background-color: #fdf0c9 !important;
+}

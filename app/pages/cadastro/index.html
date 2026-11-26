@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastrar disco — Minha Discoteca</title>
+  <meta name="description" content="Cadastre um disco buscando capa e ficha técnica na iTunes Search API.">
+  <meta name="theme-color" content="#2340a8">
+  <link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Instrument+Sans:wght@400..700&display=swap">
+  <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-warning z-3" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Navbar + Offcanvas: componentes do Bootstrap (ID 04) -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-discoteca sticky-top" aria-label="Navegação principal">
+    <div class="container-xl">
+      <a class="navbar-brand" href="../../"><span class="logo-selo" aria-hidden="true"></span>Minha Discoteca</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-primary" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalTitulo">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h5" id="menuPrincipalTitulo">Minha Discoteca</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar menu"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="../.././"><i class="bi bi-house me-2 d-lg-none" aria-hidden="true"></i>Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../pages/acervo/"><i class="bi bi-grid-3x3-gap me-2 d-lg-none" aria-hidden="true"></i>Acervo</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../pages/cadastro/"><i class="bi bi-plus-circle me-2 d-lg-none" aria-hidden="true"></i>Cadastrar disco</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../pages/emprestimos/"><i class="bi bi-people me-2 d-lg-none" aria-hidden="true"></i>Empréstimos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="conteudo" class="container-xl">
+    <header class="cabecalho-pagina">
+      <h1 id="tituloCadastro">Cadastrar disco</h1>
+      <p class="mb-0">Busque o álbum no iTunes para preencher título, artista, ano, gênero e capa. Depois complete com os dados do seu exemplar.</p>
+    </header>
+
+    <div class="row g-4 align-items-start">
+      <!-- Busca na API pública -->
+      <section class="col-lg-5" aria-labelledby="tituloBusca">
+        <div class="painel">
+          <h2 class="h3" id="tituloBusca">Buscar no iTunes</h2>
+          <form class="input-group mb-3" id="formBusca" role="search" novalidate>
+            <label class="visually-hidden" for="termoBusca">Álbum ou artista</label>
+            <input class="form-control" type="search" id="termoBusca" placeholder="Ex.: Clube da Esquina" minlength="2" required autocomplete="off">
+            <button class="btn btn-primary" type="submit" id="btnBuscar"><i class="bi bi-search me-1" aria-hidden="true"></i>Buscar</button>
+          </form>
+          <div id="statusBusca" aria-live="polite" class="small text-body-secondary">Digite pelo menos 2 letras e clique em Buscar.</div>
+          <ul class="list-unstyled resultados-busca mt-3 mb-0" id="resultadosBusca"></ul>
+        </div>
+      </section>
+
+      <!-- Formulário do disco -->
+      <section class="col-lg-7" aria-labelledby="tituloFicha">
+        <form class="painel needs-validation" id="formDisco" novalidate>
+          <h2 class="h3" id="tituloFicha">Ficha do disco</h2>
+          <p class="small text-body-secondary">Campos com <span class="text-danger">*</span> são obrigatórios.</p>
+          <input type="hidden" id="discoId" name="id">
+          <input type="hidden" id="itunesId" name="itunesId">
+
+          <div class="row g-3">
+            <div class="col-4 col-sm-3">
+              <div class="capa-previa">
+                <img id="capaPrevia" class="capa-img" src="../../../assets/img/capa-hero-360.webp" width="360" height="360" alt="Prévia da capa">
+              </div>
+              <input type="hidden" id="capaUrl" name="capaUrl">
+            </div>
+            <div class="col-8 col-sm-9">
+              <label class="form-label" for="titulo">Título <span class="text-danger">*</span></label>
+              <input class="form-control" id="titulo" name="titulo" required maxlength="120" autocomplete="off">
+              <div class="invalid-feedback">Informe o título do álbum.</div>
+              <label class="form-label mt-3" for="artista">Artista <span class="text-danger">*</span></label>
+              <input class="form-control" id="artista" name="artista" required maxlength="120" autocomplete="off">
+              <div class="invalid-feedback">Informe o artista ou a banda.</div>
+            </div>
+
+            <div class="col-6 col-md-4">
+              <label class="form-label" for="ano">Ano</label>
+              <input class="form-control" type="number" id="ano" name="ano" min="1900" max="2026" step="1" inputmode="numeric">
+              <div class="invalid-feedback" id="anoErro">Use um ano entre 1900 e 2026.</div>
+            </div>
+            <div class="col-6 col-md-4">
+              <label class="form-label" for="genero">Gênero</label>
+              <select class="form-select" id="genero" name="genero">
+              <option value="">Escolha…</option>
+              <option>MPB</option>
+              <option>Rock</option>
+              <option>Jazz</option>
+              <option>Samba</option>
+              <option>Bossa nova</option>
+              <option>Pop</option>
+              <option>Soul</option>
+              <option>Eletrônica</option>
+              <option>Outro</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-4">
+              <label class="form-label" for="faixas">Faixas</label>
+              <input class="form-control" type="number" id="faixas" name="faixas" min="1" max="99" inputmode="numeric">
+              <div class="invalid-feedback">De 1 a 99 faixas.</div>
+            </div>
+
+            <fieldset class="col-12">
+              <legend class="form-label fs-6">Formato <span class="text-danger">*</span></legend>
+              <div class="selo-opcao d-flex flex-wrap gap-2">
+                <input type="radio" class="btn-check" name="formato" id="formatoVinil" value="Vinil" required>
+                <label class="btn btn-outline-primary" for="formatoVinil">Vinil</label>
+                <input type="radio" class="btn-check" name="formato" id="formatoCD" value="CD">
+                <label class="btn btn-outline-primary" for="formatoCD">CD</label>
+                <input type="radio" class="btn-check" name="formato" id="formatoK7" value="K7">
+                <label class="btn btn-outline-primary" for="formatoK7">K7</label>
+              </div>
+              <div class="invalid-feedback" id="formatoErro">Escolha o formato do disco.</div>
+            </fieldset>
+
+            <div class="col-md-6">
+              <label class="form-label" for="conservacao">Estado de conservação <span class="text-danger">*</span></label>
+              <select class="form-select" id="conservacao" name="conservacao" required>
+                <option value="">Escolha…</option>
+                <option value="M">M — lacrado, nunca tocado</option>
+                <option value="NM">NM — quase novo</option>
+                <option value="VG+">VG+ — poucas marcas</option>
+                <option value="VG">VG — marcas visíveis, toca bem</option>
+                <option value="G">G — bem usado, chiado</option>
+              </select>
+              <div class="invalid-feedback">Escolha o estado de conservação.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="catalogo">Código de catálogo</label>
+              <input class="form-control text-uppercase" id="catalogo" name="catalogo" placeholder="Ex.: EMI 064 422" maxlength="20" autocomplete="off">
+              <div class="form-text">Impresso na lombada ou no selo do disco.</div>
+              <div class="invalid-feedback">Use letras seguidas de números, como EMI 064 422 ou SMOFB3789.</div>
+            </div>
+
+            <fieldset class="col-12">
+              <legend class="form-label fs-6">Características do exemplar</legend>
+              <div class="d-flex flex-wrap gap-3">
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="caracteristicas" id="carPrimeira" value="Primeira prensagem"><label class="form-check-label" for="carPrimeira">Primeira prensagem</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="caracteristicas" id="carImportado" value="Importado"><label class="form-check-label" for="carImportado">Importado</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="caracteristicas" id="carAutografado" value="Autografado"><label class="form-check-label" for="carAutografado">Autografado</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="caracteristicas" id="carLimitada" value="Edição limitada"><label class="form-check-label" for="carLimitada">Edição limitada</label></div>
+              </div>
+            </fieldset>
+
+            <div class="col-12">
+              <label class="form-label" for="notas">Notas</label>
+              <textarea class="form-control" id="notas" name="notas" rows="3" maxlength="280" placeholder="Onde comprou, detalhes da capa, encarte…"></textarea>
+              <div class="form-text text-end"><span id="contadorNotas">0</span>/280</div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 justify-content-end mt-4">
+            <button class="btn btn-outline-secondary" type="reset" id="btnLimpar">Limpar</button>
+            <button class="btn btn-primary btn-lg" type="submit" id="btnSalvar"><i class="bi bi-check2 me-1" aria-hidden="true"></i>Salvar disco</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Toast do Bootstrap para o retorno de sucesso (ID 04 / ID 11) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-success border-0" id="toastSalvo" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastSalvoTexto">Salvo.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar aviso"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé com CSS Grid próprio (ID 03) -->
+  <footer class="rodape">
+    <div class="container-xl rodape-grade">
+      <div>
+        <p class="rodape-marca"><span class="logo-selo" aria-hidden="true"></span>Minha Discoteca</p>
+        <p class="mb-0">A estante virtual de quem coleciona vinil, CD e fita K7. Projeto da disciplina de Desenvolvimento Web, por João Pedro Marcondes.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <h2 class="h6 text-white">Páginas</h2>
+        <ul class="list-unstyled mb-0">
+          <li><a href="../../pages/acervo/">Acervo</a></li>
+          <li><a href="../../pages/cadastro/">Cadastrar disco</a></li>
+          <li><a href="../../pages/emprestimos/">Empréstimos</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="h6 text-white">Dados</h2>
+        <p class="mb-0">Capas e informações dos álbuns pela <a href="https://performance-partners.apple.com/search-api">iTunes Search API</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

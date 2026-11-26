@@ -1,0 +1,25 @@
+/* =============================================================
+   Empréstimos — estilos só desta página (CSS puro)
+   ============================================================= */
+
+.tabela-emprestimos {
+  min-width: 36rem;
+}
+
+.tabela-emprestimos th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tabela-emprestimos tr.atrasado td:first-child {
+  box-shadow: inset 0.25rem 0 0 var(--bs-danger);
+}
+
+/* Mantém o texto oculto (visually-hidden) dentro da área com rolagem */
+.table-responsive {
+  position: relative;
+}
+
+.tabela-emprestimos .telefone {
+  white-space: nowrap;
+}
