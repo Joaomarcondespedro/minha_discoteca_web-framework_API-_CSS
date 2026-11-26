@@ -1,61 +1,85 @@
-# Minha Discoteca 🎵
+# Minha Discoteca
 
-O **Minha Discoteca** é uma aplicação web responsiva projetada para colecionadores gerenciarem seus acervos de mídias físicas (vinis, CDs e fitas K7) em uma estante virtual elegante, interativa e luxuosa.
+A estante virtual de quem coleciona vinil, CD e fita K7.
 
-## 🛠️ Tecnologias Utilizadas e Justificativas
+## Identificação
 
-* **Framework CSS:** [Bootstrap 5](https://getbootstrap.com/)
-  * *Por que escolhemos:* O Bootstrap 5 (Licença MIT) foi escolhido por seu sistema de Grid extremamente maduro e suporte mobile-first. Ele atende perfeitamente ao nosso protótipo fornecendo componentes essenciais prontos (como Cards para a estante de discos e Modals para detalhes). Além disso, possui um ecossistema independente de jQuery, classes utilitárias ricas para ajustes finos de layout, e um repositório no GitHub altamente ativo, garantindo longevidade e segurança ao projeto.
-* **API Pública:** [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html)
-  * *Por que escolhemos:* Para um sistema de arquivamento de mídia física, a precisão visual é fundamental. A API pública do iTunes permite buscar metadados reais de álbuns (ano, artista, gênero) e, principalmente, URLs de capas de alta resolução de forma gratuita e sem necessidade de autenticação complexa por tokens.
-* **Outras Tecnologias:** HTML5, CSS3, Sass, jQuery, JSON Server, Figma e Stitch.AI.
+**Autor:** João Pedro Marcondes
 
-## ✅ Checklist | Indicadores de Desempenho (ID)
+## Descrição do projeto
 
-### RA1 - Utilizar Frameworks CSS e layouts responsivos
-- [ ] **ID 01** - Prototipa interfaces adaptáveis para mobile e desktop (Figma/Stitch).
-- [ ] **ID 02** - Implementa layout responsivo com Framework CSS usando Flexbox/Grid.
-- [ ] **ID 03** - Implementa layout responsivo com CSS puro.
-- [ ] **ID 04** - Utiliza componentes prontos de um Framework CSS e JavaScript.
-- [ ] **ID 05** - Cria layout fluido usando unidades relativas (vw, vh, %, em, rem).
-- [ ] **ID 06** - Aplica um Design System consistente (cores, tipografia, padrões).
-- [ ] **ID 07** - Utiliza Sass (SCSS) aplicando variáveis, mixins e funções.
-- [ ] **ID 08** - Aplica tipografia responsiva ou fluida.
-- [ ] **ID 09** - Aplica técnicas de responsividade de imagens usando CSS.
-- [ ] **ID 10** - Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo.
+O **Minha Discoteca** é uma aplicação web responsiva para organizar uma coleção de mídia física. O colecionador busca um álbum na **iTunes Search API**, que preenche título, artista, ano, gênero e capa, e completa o cadastro com os dados do seu exemplar: formato, estado de conservação, código de catálogo e características. O acervo aparece em grade de capas ou em lista, com busca e filtro por formato. Uma segunda área controla os **empréstimos**: para quem cada disco foi emprestado, o telefone e a data de devolução.
 
-### RA2 - Tratamento de formulários e validações
-- [ ] **ID 11** - Implementa validação HTML nativa com mensagens customizadas.
-- [ ] **ID 12** - Aplica expressões regulares (REGEX) para validações customizadas.
-- [ ] **ID 13** - Utiliza elementos de seleção em formulários (checkbox, radio, select).
-- [ ] **ID 14** - Implementa leitura e escrita no Web Storage (localStorage/sessionStorage).
+Os dados ficam em uma API fake (**JSON Server**) com duas entidades, `discos` e `emprestimos`. As preferências do usuário ficam no **Web Storage**.
 
-### RA3 - Otimização do processo de desenvolvimento web
-- [ ] **ID 15** - Configura ambiente com Node.js e NPM.
-- [ ] **ID 16** - Utiliza boas práticas de versionamento no Git/GitHub.
-- [ ] **ID 17** - Mantém um README.md padronizado, com checklist preenchido.
-- [ ] **ID 18** - Organiza arquivos do projeto de forma modular na pasta docs.
-- [ ] **ID 19** - Configura linters e formatadores (ESLint, Prettier).
+- Requisitos do produto: [docs/prd.md](docs/prd.md)
+- Arquitetura, modelo de dados e contratos das APIs: [docs/architecture.md](docs/architecture.md)
 
-### RA4 - Bibliotecas e componentes JavaScript
-- [ ] **ID 20** - Utiliza jQuery para manipulação do DOM e interatividade.
-- [ ] **ID 21** - Integra e configura um plugin jQuery relevante.
+## Prototipação
 
-### RA5 - Requisições assíncronas e APIs
-- [ ] **ID 22** - Realiza requisições assíncronas para uma API fake persistindo dados.
-- [ ] **ID 23** - Realiza requisições assíncronas para uma API fake exibindo dados.
-- [ ] **ID 24** - Realiza requisições assíncronas para APIs públicas reais.
+- Protótipo navegável (Google Stitch): _link a ser colado após gerar o protótipo_
 
-## 📄 Documentação do Projeto
-* [Product Requirements Document (PRD)](docs/prd.md)
-* [Arquitetura, Modelo de Dados e Design Tokens](docs/architecture.md)
+## Design System
 
-## 🎨 Protótipo Interativo
-* [Acessar Protótipo Navegável (Figma / Stitch.AI)](https://stitch.withgoogle.com/projects/6420219798709879911)
+- Documento do Design System (tokens de cor, tipografia, espaçamento e componentes): [docs/architecture.md#4-design-system](docs/architecture.md#4-design-system)
 
+## Framework CSS
 
-![Tela 1](docs/imgs/screen.png)
-![Tela 2](docs/imgs/screen2.png)
-![Tela 3](docs/imgs/screen3.png)
+- **Bootstrap 5.3.8**, customizado com Sass
 
+## Dependências
 
+_A partir da Entrega 2._
+
+## Site em produção
+
+_A partir da Entrega 3._
+
+## Checklist de Funcionalidades
+
+### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos
+
+- [ ] ID 01 - Prototipa interfaces adaptáveis para no mínimo os tamanhos de tela mobile e desktop, usando ferramentas de design tradicionais (Figma, Quant UX ou Sketch) ou IA (Stitch).
+- [ ] ID 02 - Implementa layout responsivo com Framework CSS (Bootstrap, Materialize) usando Flexbox ou Grid do próprio framework.
+- [ ] ID 03 - Implementa layout responsivo com CSS puro, usando Flexbox ou Grid Layout.
+- [ ] ID 04 - Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, carousel).
+- [ ] ID 05 - Cria layout fluido usando unidades relativas (vw, vh, %, em, rem) no lugar de unidades fixas (px).
+- [ ] ID 06 - Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
+- [ ] ID 07 - Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
+- [ ] ID 08 - Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (função clamp() + unidades relativas).
+- [ ] ID 09 – Aplica técnicas de responsividade de imagens usando CSS (object-fit, containers com unidades relativas).
+- [ ] ID 10 – Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (srcset, picture, ou parâmetros do Cloudinary).
+
+### RA2 - Realizar tratamento de formulários e aplicar validações customizadas no lado cliente
+
+- [ ] ID 11 - Implementa validação HTML nativa (campos obrigatórios, tipos, limites de caracteres) com mensagens de erro/sucesso no lado cliente.
+- [ ] ID 12 - Aplica expressões regulares (REGEX) para validações customizadas (e-mail, telefone, datas, etc.)
+- [ ] ID 13 - Utiliza elementos de seleção em formulários (checkbox, radio, select) para coleta de dados.
+- [ ] ID 14 - Implementa leitura e escrita no Web Storage (localStorage/sessionStorage) para persistir dados localmente.
+
+### RA3 - Aplicar ferramentas para otimização do processo de desenvolvimento web
+
+- [ ] ID 15 - Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
+- [ ] ID 16 - Utiliza boas práticas de versionamento no Git/GitHub (branch main ou branches específicos, uso de .gitignore).
+- [ ] ID 17 - Mantém um README.md padronizado, conforme template da disciplina, com checklist preenchido.
+- [ ] ID 18 - Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido.
+- [ ] ID 19 - Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
+
+### RA4 - Aplicar bibliotecas de funções e componentes em JavaScript para aprimorar a interatividade de páginas web
+
+- [ ] ID 20 - Utiliza jQuery para manipulação do DOM e interatividade (eventos, animações, manipulação de elementos)
+- [ ] ID 21 - Integra e configura um plugin jQuery relevante (ex.: jQuery Mask Plugin) ou outra biblioteca de funções.
+
+### RA5 - Efetuar requisições assíncronas para uma API fake e APIs públicas, permitindo a obtenção e manipulação de dados dinamicamente
+
+- [ ] ID 22 - Realiza requisições assíncronas para uma API fake (ex.: JSON Server) para persistir dados de um formulário.
+- [ ] ID 23 - Realiza requisições assíncronas para uma API fake para exibir dados na página.
+- [ ] ID 24 - Realiza requisições assíncronas para APIs públicas reais (OpenWeather, ViaCEP etc.), exibindo os dados e tratando erros.
+
+## Instruções de Execução
+
+_A partir da Entrega 2._
+
+## Telas da Aplicação
+
+_A partir da Entrega 2._

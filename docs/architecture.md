@@ -1,113 +1,232 @@
-# Especificação Técnica e Arquitetura - Minha Discoteca
+# Architecture — Minha Discoteca
 
-## 1. Modelo de Dados (Diagrama ER)
+> Software Design Document: o **como**. É o contrato técnico que guia o desenvolvimento (inclusive o código gerado com ajuda de IA).
+
+## 1. Stack e versões exatas
+
+| Camada | Tecnologia | Versão | Como entra no projeto |
+| :--- | :--- | :--- | :--- |
+| Framework CSS | **Bootstrap** | 5.3.8 | npm (Sass do framework) + CDN jsDelivr para o JS no site publicado |
+| Ícones | Bootstrap Icons | 1.13.1 | CDN jsDelivr |
+| Pré-processador | Sass (Dart Sass) | 1.x | npm (`npm run sass`) |
+| Biblioteca JS | jQuery | 3.7.1 | npm / CDN |
+| Plugin jQuery | jQuery Mask Plugin | 1.14.16 | npm / CDN |
+| API fake | JSON Server | 0.17.4 | npm (`npm run api`) |
+| API pública | iTunes Search API | v1 (sem chave) | `fetch` direto do navegador |
+| Qualidade | ESLint 9 + Prettier 3 | — | npm (`npm run lint`, `npm run format`) |
+| Ambiente | Node.js LTS | 22.x | — |
+
+> **Tailwind CSS não é usado** neste projeto, conforme a regra da disciplina.
+
+### 1.1 Por que Bootstrap 5.3
+
+| Critério | Análise |
+| :--- | :--- |
+| Responsividade | Grid de 12 colunas mobile first, com breakpoints `sm`, `md`, `lg`, `xl`, `xxl`. A grade de capas usa `col-6 col-md-4 col-xl-3`: duas capas no celular, quatro no desktop, como no protótipo. |
+| Componentes | Tem todos os componentes do protótipo: navbar + offcanvas, card, modal, toast, formulários com validação e tabela. |
+| JavaScript | Os componentes interativos (modal, offcanvas, toast) já vêm prontos no `bootstrap.bundle` e não dependem de jQuery. |
+| Customização | Todas as cores e fontes são variáveis Sass com `!default`. Basta definir os tokens antes do `@import` para o framework inteiro adotar o Design System. |
+| Saúde do projeto | Repositório `twbs/bootstrap` ativo, com releases em 2025 e mais de 170 mil estrelas. |
+| Licença | MIT. |
+
+### 1.2 Por que a iTunes Search API
+
+- É gratuita, pública e **não exige chave nem cadastro**.
+- Responde com **CORS liberado**, então o `fetch` funciona direto do GitHub Pages.
+- Devolve exatamente o que o cadastro de disco precisa: `collectionName`, `artistName`, `releaseDate`, `primaryGenreName`, `trackCount` e `artworkUrl100`.
+- A URL da capa aceita o tamanho e o formato no próprio endereço (`.../300x300bb.webp`), o que permite montar o `srcset` em WebP (ID 10).
+
+## 2. Modelo de dados
 
 ```mermaid
 erDiagram
-    COLECIONADOR ||--o{ ALBUM : gerencia
-    ALBUM ||--o{ FILA_REPRODUCAO : possui
+    DISCO ||--o{ EMPRESTIMO : "pode ser emprestado em"
 
-    COLECIONADOR {
-        string id PK
-        string nome
-    }
-
-    ALBUM {
+    DISCO {
         string id PK
         string titulo
         string artista
         int ano
         string genero
         string formato
+        string conservacao
+        string[] caracteristicas
+        string catalogo
         string capaUrl
+        int faixas
+        string itunesId
+        string notas
+        string criadoEm
     }
 
-    FILA_REPRODUCAO {
+    EMPRESTIMO {
         string id PK
-        string albumId FK
-        datetime adicionadoEm
+        string discoId FK
+        string amigo
+        string telefone
+        string email
+        string dataEmprestimo
+        string dataDevolucao
+        boolean devolvido
     }
 ```
-## 2. Design Tokens (Premium Archival Aesthetic)
 
-### Paleta de Cores e Materiais
-* **Fundo da Aplicação (Floor):** Superfície escura (`#121415`) com gradiente sutil (Vinho Profundo para Preto) simulando iluminação de galeria.
-* **Texturas (Prateleiras):** Uso de textura orgânica de madeira Nogueira (Walnut Wood) para criar divisão estrutural.
-* **Cards e Contêineres (Archive Case):** Efeito *Glassmorphism* (vidro fumê) em carvão escuro (`rgba(26, 26, 36, 0.60)`) com desfoque de fundo (backdrop-blur).
-* **Cor de Destaque (Botões e Tags):** Dourado Polido (`#D4AF37` / `#e9c349`) reservado para ações principais e itens raros.
-* **Texto Principal:** Off-white (`#e2e2e3`) para conforto visual, e Cinza Suave (`#d4c2c6`) para metadados.
+### 2.1 Dicionário de dados — `discos`
 
-### Tipografia
-* **Títulos (Headings):** Playfair Display (trazendo voz editorial, autoritária e clássica).
-* **Textos Normais e Metadados (Body/Label):** Inter (garantindo legibilidade máxima para especificações técnicas e inventário, mesmo em tamanhos pequenos).
-* **Espaçamentos:** Sistema de grid base de 8pt e utilitários do Bootstrap (rem).
-
-## 3. Protótipo Interativo
-* **Figma / Stitch.AI:** https://stitch.withgoogle.com/projects/17137094067812874499
-  
-## 4. Dicionário de Dados
-
-Detalhamento dos atributos que compõem a entidade principal do nosso sistema.
-
-### Entidade: Álbum
-| Campo | Tipo | Obrigatório | Descrição |
+| Campo | Tipo | Obrigatório | Regra / exemplo |
 | :--- | :--- | :---: | :--- |
-| `id` | String | Sim | Identificador único gerado automaticamente. |
-| `titulo` | String | Sim | Nome oficial do álbum. |
-| `artista` | String | Sim | Nome da banda, artista principal ou grupo. |
-| `ano` | Number | Não | Ano de lançamento original. |
-| `genero` | String | Sim | Gênero musical (ex: Jazz, Rock, MPB). |
-| `formato` | String | Sim | Tipo de mídia física (Vinil, CD, K7). |
-| `capaUrl` | String | Não | URL da imagem da capa em alta resolução. |
+| `id` | string | sim | Gerado pelo JSON Server. |
+| `titulo` | string | sim | 1 a 120 caracteres. |
+| `artista` | string | sim | 1 a 120 caracteres. |
+| `ano` | number | não | 1900 até o ano atual (RN02). |
+| `genero` | string | não | `MPB`, `Rock`, `Jazz`, `Samba`, `Bossa nova`, `Pop`, `Soul`, `Eletrônica`, `Outro`. |
+| `formato` | string | sim | `Vinil`, `CD` ou `K7` (RN03). |
+| `conservacao` | string | sim | Escala de colecionador: `M` (mint), `NM`, `VG+`, `VG`, `G`. |
+| `caracteristicas` | string[] | não | `Primeira prensagem`, `Importado`, `Autografado`, `Edição limitada`. |
+| `catalogo` | string | não | Regex RN04: `/^[A-Z]{2,5}[- ]?\d{3,6}( ?\d{1,4})?$/i`. |
+| `capaUrl` | string | não | URL da capa vinda do iTunes. |
+| `faixas` | number | não | Número de faixas. |
+| `itunesId` | string | não | `collectionId` do iTunes. |
+| `notas` | string | não | Até 280 caracteres. |
+| `criadoEm` | string | sim | Data ISO 8601. |
 
----
+### 2.2 Dicionário de dados — `emprestimos`
 
-## 5. Mapeamento de Rotas (APIs)
+| Campo | Tipo | Obrigatório | Regra / exemplo |
+| :--- | :--- | :---: | :--- |
+| `id` | string | sim | Gerado pelo JSON Server. |
+| `discoId` | string | sim | FK para `discos.id`. |
+| `amigo` | string | sim | Nome com pelo menos 2 palavras. |
+| `telefone` | string | sim | Regex RN05: `/^\(\d{2}\) \d{4,5}-\d{4}$/`. |
+| `email` | string | não | Regex: `/^[\w.+-]+@[\w-]+\.[\w.-]{2,}$/`. |
+| `dataEmprestimo` | string | sim | `AAAA-MM-DD`. |
+| `dataDevolucao` | string | sim | `AAAA-MM-DD`, maior ou igual a `dataEmprestimo` (RN06). |
+| `devolvido` | boolean | sim | Começa `false`. |
 
-O sistema fará uso de duas frentes de consumo de dados: uma API pública para enriquecimento e um Mock Backend para persistência.
+## 3. Contratos das APIs
 
-### API Externa (iTunes Search API)
-Responsável por buscar capas e dados originais dos álbuns (Atende ao **ID 24**).
-* **`GET`** `https://stitch.withgoogle.com/projects/6420219798709879911`
-  * *Descrição:* Retorna uma lista de álbuns correspondentes à busca. O parâmetro `term` deve conter o nome do artista ou álbum (espaços substituídos por `+`).
+### 3.1 API fake — JSON Server (`http://localhost:3000`)
 
-### Mock Backend (JSON Server)
-Responsável por simular nosso servidor local (Atende aos **IDs 22 e 23**).
-* **Base URL:** `http://localhost:3000`
-* **`GET /albuns`**: Retorna a lista completa do acervo salvo.
-* **`POST /albuns`**: Cadastra um novo disco na estante.
-* **`PUT /albuns/:id`**: Atualiza as informações de um disco existente.
-* **`DELETE /albuns/:id`**: Remove um disco da coleção.
-* **`GET /fila`**: Retorna os itens adicionados à fila de reprodução.
+| Método | Rota | Uso no app | ID |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/discos?_sort=criadoEm&_order=desc` | Listagem do acervo e "últimos que entraram" | 23 |
+| `GET` | `/discos/:id` | Carregar disco para edição | 23 |
+| `POST` | `/discos` | Cadastrar disco | 22 |
+| `PUT` | `/discos/:id` | Editar disco | 22 |
+| `DELETE` | `/discos/:id` | Excluir disco | 22 |
+| `GET` | `/emprestimos?_expand=disco` | Tabela de empréstimos com os dados do disco | 23 |
+| `POST` | `/emprestimos` | Registrar empréstimo | 22 |
+| `PATCH` | `/emprestimos/:id` | Marcar como devolvido (`{ "devolvido": true }`) | 22 |
 
----
+### 3.2 API pública — iTunes Search API
 
-## 6. Estrutura do Banco de Dados (db.json)
+```
+GET https://itunes.apple.com/search?term={busca}&entity=album&country=BR&limit=12
+```
 
-Como utilizaremos o **JSON Server** para simular nosso banco de dados relacional, a persistência ocorrerá em um arquivo estático `db.json` localizado na raiz do projeto. O esqueleto inicial será este:
+Resposta (resumida):
 
 ```json
 {
-  "albuns": [
+  "resultCount": 1,
+  "results": [
     {
-      "id": "1",
-      "titulo": "Kind of Blue",
-      "artista": "Miles Davis",
-      "ano": 1959,
-      "genero": "Jazz",
-      "formato": "Vinil",
-      "capaUrl": "[https://exemplo.com/kind-of-blue.jpg](https://exemplo.com/kind-of-blue.jpg)"
+      "collectionId": 1473446573,
+      "collectionName": "Clube da Esquina",
+      "artistName": "Milton Nascimento & Lô Borges",
+      "releaseDate": "1972-03-01T08:00:00Z",
+      "primaryGenreName": "MPB",
+      "trackCount": 21,
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/.../100x100bb.jpg"
     }
-  ],
-  "fila": []
+  ]
 }
 ```
-## 7. Versões das Tecnologias Base
 
-Para garantir compatibilidade futura de código e previsibilidade na geração de componentes por assistentes de IA, o projeto adotará as seguintes versões exatas de suas dependências principais:
+Tratamento de erros (ID 24): `try/catch` em volta do `fetch`, conferência de `response.ok` e mensagem na tela quando não há resultados ou a API não responde.
 
-* **Framework de Layout:** Bootstrap v5.3.3
-* **Biblioteca de Ícones:** Bootstrap Icons v1.11.3
-* **Manipulação de DOM:** jQuery v3.7.1
-* **API Externa:** iTunes Search API (v1)
-* **Mock Backend:** JSON Server v0.17.4
+## 4. Design System
+
+Conceito: **"selo de vinil"**. A interface pega emprestado o vocabulário do disco: a capa quadrada, a lombada com o nome do álbum e o selo redondo no centro do vinil. Cobalto e girassol são as cores dos selos das gravadoras brasileiras dos anos 70; o fundo frio lembra o papel da capa interna.
+
+### 4.1 Cores (tokens)
+
+| Token | Hex | Variável Sass | Uso |
+| :--- | :--- | :--- | :--- |
+| Cobalto | `#2340A8` | `$cobalto` → `$primary` | Cor principal: navbar, hero, botões primários, links. |
+| Girassol | `#F4B728` | `$girassol` → `$warning` | Destaque: selo do vinil, badge de formato, foco. |
+| Tinta | `#171A2C` | `$tinta` → `$dark` / `$body-color` | Texto principal e rodapé. |
+| Capa interna | `#EEF0F6` | `$capa-interna` → `$body-bg` | Fundo da aplicação. |
+| Papel | `#FFFFFF` | `$papel` | Superfície de cards, modais e formulários. |
+| Carmim | `#C8323F` | `$carmim` → `$danger` | Erros, excluir, empréstimo atrasado. |
+| Verde selo | `#17784F` | `$verde-selo` → `$success` | Sucesso, devolvido. |
+
+Contraste: texto Tinta sobre Capa interna = 15,1:1; texto branco sobre Cobalto = 8,9:1; Tinta sobre Girassol = 9,5:1; branco sobre Carmim = 5,3:1; branco sobre Verde selo = 5,5:1 (todos acima do mínimo AA de 4,5:1).
+
+### 4.2 Tipografia
+
+| Papel | Fonte | Pesos | Por quê |
+| :--- | :--- | :--- | :--- |
+| Títulos (display) | **Anybody** | 700–800, largura expandida (`font-stretch: 125%`) | Fonte de largura variável que lembra a tipografia larga das lombadas e dos selos de LP. |
+| Texto e formulários | **Instrument Sans** | 400, 500, 600 | Sans-serif neutra, ótima leitura em tamanhos pequenos (metadados do disco). |
+
+Escala tipográfica fluida com `clamp()` (ID 08), gerada pela função Sass `fluido($min, $max)`:
+
+| Elemento | Mínimo (celular) | Máximo (desktop) |
+| :--- | :--- | :--- |
+| `h1` / hero | 2.25rem | 4.5rem |
+| `h2` | 1.6rem | 2.5rem |
+| `h3` | 1.25rem | 1.6rem |
+| corpo | 1rem | 1.0625rem |
+
+### 4.3 Espaçamento, bordas e sombras
+
+- Espaçamento em múltiplos de **0.5rem**, pela função Sass `espaco($n)` (ex.: `espaco(3)` = `1.5rem`).
+- Raios com hierarquia: capa do disco `2px` (capa é quadrada), cards `0.75rem`, modal `1.25rem`, botões e badges `999px` (formato de selo).
+- Uma única sombra, `sombra-capa`, para dar volume às capas (mixin `@include sombra-capa`).
+
+### 4.4 Componentes do Bootstrap usados (substituição do protótipo)
+
+| Componente do protótipo | Componente Bootstrap | Página |
+| :--- | :--- | :--- |
+| Barra de navegação + menu do celular | `navbar` + `offcanvas` (JS) | Todas |
+| Capa do disco na estante | `card` | Início, Acervo |
+| Ficha do disco | `modal` (JS) | Acervo |
+| Aviso de "salvo" | `toast` (JS) | Cadastro, Empréstimos |
+| Formulários | `form-control`, `form-select`, `form-check`, `btn-check`, `was-validated` | Cadastro, Empréstimos |
+| Lista de empréstimos | `table`, `table-responsive`, `badge` | Empréstimos |
+
+## 5. Organização dos arquivos
+
+Estrutura modular sugerida na disciplina (ID 18):
+
+```
+/
+├── index.html                  redireciona para app/ (endereço raiz do GitHub Pages)
+├── app/
+│   ├── index.html              página inicial
+│   ├── style.css               CSS global, compilado do Sass (não editar à mão)
+│   ├── index.js                JavaScript da página inicial
+│   ├── pages/
+│   │   ├── acervo/             index.html  acervo.css  acervo.js
+│   │   ├── cadastro/           index.html  cadastro.css  cadastro.js
+│   │   └── emprestimos/        index.html  emprestimos.css  emprestimos.js
+│   ├── model/                  Disco.js  Emprestimo.js
+│   ├── service/                api.js (JSON Server)  itunes.js (API pública)
+│   └── util/                   validacao.js  storage.js  ui.js
+├── assets/
+│   ├── scss/                   main.scss  _tokens.scss  _funcoes.scss  _mixins.scss  _base.scss  _componentes.scss
+│   └── img/                    imagens em WebP (3 larguras cada)
+├── docs/                       prd.md  architecture.md  img/
+├── db.json                     banco do JSON Server
+├── package.json
+├── eslint.config.js  .prettierrc  .gitignore
+```
+
+## 6. Web Storage
+
+| Chave | Storage | Conteúdo | Por quê |
+| :--- | :--- | :--- | :--- |
+| `md:visualizacao` | `localStorage` | `"grade"` ou `"lista"` | Preferência que deve durar entre visitas. |
+| `md:filtros` | `localStorage` | `{ "busca": "", "formato": "" }` | Volta ao acervo com o último filtro usado. |
+| `md:rascunho` | `sessionStorage` | objeto com os campos do cadastro | Rascunho só da aba atual: some ao fechar a aba, como um formulário em edição. |

@@ -1,1 +1,8 @@
 node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.vscode/*
+!.vscode/extensions.json
+db.backup.json
