@@ -1,0 +1,62 @@
+// =============================================================
+// Design Tokens — Minha Discoteca (docs/architecture.md §4)
+// Os tokens são definidos ANTES do Bootstrap. Como as variáveis
+// do Bootstrap usam !default, o framework adota estes valores.
+// =============================================================
+
+// ---------- Cores ----------
+$cobalto: #2340a8;
+$girassol: #f4b728;
+$tinta: #171a2c;
+$capa-interna: #eef0f6;
+$papel: #ffffff;
+$carmim: #c8323f;
+$verde-selo: #17784f;
+
+// ---------- Cores do Bootstrap ----------
+$primary: $cobalto;
+$warning: $girassol;
+$danger: $carmim;
+$success: $verde-selo;
+$dark: $tinta;
+$light: $capa-interna;
+$body-bg: $capa-interna;
+$body-color: $tinta;
+$link-color: $cobalto;
+
+// ---------- Tipografia ----------
+$fonte-display: 'Anybody', 'Arial Narrow', sans-serif;
+$fonte-texto: 'Instrument Sans', system-ui, sans-serif;
+
+$font-family-sans-serif: $fonte-texto;
+$headings-font-family: $fonte-display;
+$headings-font-weight: 800;
+$headings-line-height: 1.05;
+$font-size-base: 1rem;
+$line-height-base: 1.55;
+
+// ---------- Forma ----------
+$border-radius: 0.75rem;
+$border-radius-sm: 0.5rem;
+$border-radius-lg: 1.25rem;
+$border-radius-pill: 999px;
+$btn-border-radius: $border-radius-pill;
+$btn-border-radius-sm: $border-radius-pill;
+$btn-border-radius-lg: $border-radius-pill;
+$btn-font-weight: 600;
+$badge-border-radius: $border-radius-pill;
+$card-border-width: 0;
+$card-bg: $papel;
+$modal-content-border-radius: $border-radius-lg;
+$modal-content-bg: $papel;
+$table-bg: $papel;
+$input-bg: $papel;
+$input-border-color: #c9cede;
+$input-focus-border-color: $cobalto;
+$focus-ring-color: rgba($girassol, 0.6);
+$focus-ring-width: 0.25rem;
+$input-btn-focus-color: $focus-ring-color;
+
+// ---------- Tokens próprios ----------
+$raio-capa: 2px;
+$largura-conteudo: 76rem;

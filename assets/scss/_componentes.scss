@@ -1,0 +1,287 @@
+// =============================================================
+// Componentes do Minha Discoteca
+// (complementam os componentes prontos do Bootstrap)
+// =============================================================
+
+// ---------- Navbar ----------
+.navbar-discoteca {
+  background-color: $cobalto;
+  padding-block: espaco(1.5);
+
+  .navbar-brand {
+    @include titulo-lombada(1.25rem);
+    display: flex;
+    align-items: center;
+    gap: espaco(1.5);
+  }
+
+  .nav-link {
+    font-weight: 600;
+    border-bottom: 0.1875rem solid transparent;
+
+    &.active,
+    &[aria-current='page'] {
+      border-bottom-color: $girassol;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    .offcanvas {
+      background-color: $cobalto;
+    }
+
+    .nav-link {
+      font-size: 1.25rem;
+      padding-block: espaco(1.5);
+    }
+  }
+}
+
+.logo-selo {
+  @include vinil($girassol);
+  width: 2.25rem;
+  flex-shrink: 0;
+}
+
+// ---------- Hero da página inicial ----------
+.hero {
+  background-color: $cobalto;
+  color: $papel;
+  overflow: hidden;
+}
+
+// Layout do hero com CSS Grid puro (ID 03)
+.hero-grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: espaco(5);
+  min-height: 70vh;
+  padding-block: espaco(6);
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: 1.15fr 1fr;
+    padding-block: espaco(8);
+  }
+}
+
+.hero-texto {
+  max-width: 38rem;
+
+  p {
+    font-size: fluido(1.0625rem, 1.25rem);
+    opacity: 0.9;
+  }
+}
+
+.hero-arte {
+  position: relative;
+  width: 72%;
+  margin-inline: 0 auto;
+
+  @include media-breakpoint-up(md) {
+    width: min(100%, 28rem);
+    margin-inline: auto 12%;
+  }
+}
+
+.hero-capa {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: $raio-capa;
+  @include sombra-capa;
+}
+
+// O vinil começa escondido atrás da capa e desliza para fora no carregamento
+.hero-vinil {
+  @include vinil($girassol);
+  position: absolute;
+  inset: 4% auto auto 4%;
+  width: 92%;
+  animation: sair-da-capa 1.1s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes sair-da-capa {
+  from {
+    transform: translateX(0) rotate(0deg);
+  }
+  to {
+    transform: translateX(28%) rotate(40deg);
+  }
+}
+
+// ---------- Card do disco (capa na estante) ----------
+.card-disco {
+  height: 100%;
+  background: transparent;
+
+  .capa-moldura {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: $raio-capa;
+    background-color: darken($capa-interna, 8%);
+    overflow: hidden;
+    @include sombra-capa;
+  }
+
+  .capa-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-body {
+    padding: espaco(1.5) 0 0;
+  }
+
+  .card-title {
+    font-family: $fonte-display;
+    font-stretch: 110%;
+    font-weight: 700;
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    margin-bottom: espaco(0.5);
+  }
+
+  .card-text {
+    color: rgba($tinta, 0.7);
+    font-size: 0.9375rem;
+  }
+
+  .stretched-link:focus-visible::after {
+    outline: 0.1875rem solid $girassol;
+    border-radius: $raio-capa;
+  }
+}
+
+.badge-formato {
+  background-color: $girassol;
+  color: $tinta;
+  font-weight: 700;
+}
+
+.badge-conservacao {
+  background-color: rgba($cobalto, 0.1);
+  color: $cobalto;
+  font-weight: 700;
+}
+
+// ---------- Ficha do disco (modal) ----------
+.ficha-disco {
+  .ficha-arte {
+    position: relative;
+    width: min(80%, 16rem);
+    margin-inline: 0 auto;
+  }
+
+  .ficha-arte .capa-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: $raio-capa;
+    @include sombra-capa;
+  }
+
+  .ficha-vinil {
+    @include vinil($girassol);
+    position: absolute;
+    inset: 4% auto auto 4%;
+    width: 92%;
+    transition: transform 0.8s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  dt {
+    font-weight: 600;
+    color: rgba($tinta, 0.65);
+  }
+}
+
+// Quando o modal abre, o disco sai da capa (resposta à ação do usuário)
+.modal.show .ficha-vinil {
+  transform: translateX(20%) rotate(30deg);
+}
+
+// ---------- Cabeçalho das páginas internas ----------
+.cabecalho-pagina {
+  padding-block: espaco(5) espaco(3);
+
+  p {
+    max-width: 40rem;
+    color: rgba($tinta, 0.75);
+    font-size: fluido(1rem, 1.125rem);
+  }
+}
+
+// ---------- Formulários ----------
+.painel {
+  background-color: $papel;
+  border-radius: $border-radius;
+  padding: espaco(3);
+
+  @include media-breakpoint-up(md) {
+    padding: espaco(4);
+  }
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+// Radio do formato como "selos" clicáveis
+.selo-opcao {
+  .btn {
+    min-width: 6rem;
+    border-width: 0.125rem;
+  }
+}
+
+// ---------- Estado vazio e avisos ----------
+.estado-vazio {
+  text-align: center;
+  padding: espaco(6) espaco(2);
+
+  .logo-selo {
+    width: 4rem;
+    margin: 0 auto espaco(2);
+  }
+}
+
+// ---------- Rodapé com CSS Grid puro (ID 03) ----------
+.rodape {
+  background-color: $tinta;
+  color: rgba($papel, 0.8);
+  padding-block: espaco(5) espaco(3);
+  margin-top: espaco(8);
+
+  a {
+    color: $papel;
+  }
+}
+
+.rodape-grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: espaco(3);
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+.rodape-marca {
+  @include titulo-lombada(1.25rem);
+  color: $papel;
+  display: flex;
+  align-items: center;
+  gap: espaco(1.5);
+}

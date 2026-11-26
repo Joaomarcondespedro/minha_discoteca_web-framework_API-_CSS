@@ -1,0 +1,49 @@
+// =============================================================
+// Base: tipografia fluida e elementos globais
+// =============================================================
+
+body {
+  font-size: fluido(1rem, 1.0625rem);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1,
+.h1 {
+  @include titulo-lombada(fluido(2.25rem, 3.75rem), 112%);
+}
+
+h2,
+.h2 {
+  @include titulo-lombada(fluido(1.6rem, 2.5rem));
+}
+
+h3,
+.h3 {
+  font-stretch: 112%;
+  font-size: fluido(1.25rem, 1.6rem);
+}
+
+.conteudo {
+  width: min(100% - #{espaco(4)}, $largura-conteudo);
+  margin-inline: auto;
+}
+
+:focus-visible {
+  outline: 0.1875rem solid $girassol;
+  outline-offset: 0.125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

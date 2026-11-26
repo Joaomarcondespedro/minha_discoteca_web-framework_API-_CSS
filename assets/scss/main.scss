@@ -1,0 +1,24 @@
+// =============================================================
+// Minha Discoteca — ponto de entrada do Sass
+// Compila para app/style.css com: npm run sass
+// =============================================================
+
+// 1. Funções do Bootstrap (necessárias para os mapas de cor)
+@import 'bootstrap/scss/functions';
+
+// 2. Tokens e funções do Design System — ANTES das variáveis do Bootstrap
+@import 'funcoes';
+@import 'tokens';
+
+// 3. Restante do Bootstrap (lê os tokens acima no lugar dos valores padrão)
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/bootstrap';
+
+// 4. Código próprio
+@import 'mixins';
+@import 'base';
+@import 'componentes';

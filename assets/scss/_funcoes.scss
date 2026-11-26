@@ -1,0 +1,17 @@
+// =============================================================
+// Funções do Design System
+// =============================================================
+@use 'sass:math';
+
+// Espaçamento em passos de meio rem: espaco(3) => 1.5rem
+@function espaco($n) {
+  @return $n * 0.5rem;
+}
+
+// Tipografia fluida: cresce linearmente de $min (tela de 20rem/320px)
+// até $max (tela de 80rem/1280px) e trava nos limites com clamp().
+@function fluido($min, $max, $tela-min: 20rem, $tela-max: 80rem) {
+  $inclinacao: math.div($max - $min, $tela-max - $tela-min);
+  $base: $min - $inclinacao * $tela-min;
+  @return clamp(#{$min}, #{$base} + #{$inclinacao * 100}vw, #{$max});
+}
