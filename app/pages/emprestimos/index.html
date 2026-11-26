@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Instrument+Sans:wght@400..700&display=swap">
-  <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="emprestimos.css">
 </head>
@@ -55,16 +55,6 @@
             <label class="form-label" for="discoId">Disco <span class="text-danger">*</span></label>
             <select class="form-select" id="discoId" name="discoId" required>
               <option value="">Escolha um disco do acervo…</option>
-                <option value="1">Clube da Esquina — Milton Nascimento &amp; Lô Borges</option>
-                <option value="2">Kind of Blue — Miles Davis</option>
-                <option value="3">Rumours — Fleetwood Mac</option>
-                <option value="4">Random Access Memories — Daft Punk</option>
-                <option value="5">Elis &amp; Tom — Elis Regina &amp; Antônio Carlos Jobim</option>
-                <option value="6">A Tábua de Esmeralda — Jorge Ben Jor</option>
-                <option value="7">Construção — Chico Buarque</option>
-                <option value="8">Africa Brasil — Jorge Ben Jor</option>
-                <option value="9">Abbey Road — The Beatles</option>
-                <option value="10">The Wall — Pink Floyd</option>
             </select>
             <div class="invalid-feedback" id="discoErro">Escolha o disco que vai emprestar.</div>
           </div>
@@ -120,27 +110,7 @@
               <tr><th scope="col">Disco</th><th scope="col">Amigo</th><th scope="col">Devolução</th><th scope="col">Situação</th><th scope="col"><span class="visually-hidden">Ações</span></th></tr>
             </thead>
             <tbody id="corpoTabela">
-              <tr>
-                <td><strong>Kind of Blue</strong><br><span class="small text-body-secondary">Miles Davis</span></td>
-                <td>Rafael Souza<br><span class="small text-body-secondary telefone">(42) 99876-1234</span></td>
-                <td>30/11/2026</td>
-                <td><span class="badge text-bg-warning">Emprestado</span></td>
-                <td class="text-end"><button class="btn btn-sm btn-outline-success text-nowrap" type="button">Recebi de volta</button></td>
-              </tr>
-              <tr>
-                <td><strong>Elis &amp; Tom</strong><br><span class="small text-body-secondary">Elis Regina &amp; Antônio Carlos Jobim</span></td>
-                <td>Ana Paula Lima<br><span class="small text-body-secondary telefone">(42) 3623-4455</span></td>
-                <td>15/11/2026</td>
-                <td><span class="badge text-bg-danger">Atrasado</span></td>
-                <td class="text-end"><button class="btn btn-sm btn-outline-success text-nowrap" type="button">Recebi de volta</button></td>
-              </tr>
-              <tr>
-                <td><strong>Abbey Road</strong><br><span class="small text-body-secondary">The Beatles</span></td>
-                <td>Carlos Mendes<br><span class="small text-body-secondary telefone">(41) 98765-4321</span></td>
-                <td>20/09/2026</td>
-                <td><span class="badge text-bg-success">Devolvido</span></td>
-                <td class="text-end"></td>
-              </tr>
+              <tr><td colspan="5" class="placeholder-glow"><span class="placeholder col-12"></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -180,6 +150,9 @@
     </div>
   </footer>
 
-  <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+  <script type="module" src="emprestimos.js"></script>
 </body>
 </html>

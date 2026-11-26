@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Instrument+Sans:wght@400..700&display=swap">
-  <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -69,76 +69,13 @@
       <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
         <div>
           <h2 id="tituloEstante">Na estante</h2>
-          <p class="mb-0" id="resumoColecao">Você tem <strong>10 discos</strong>: 6 vinis, 3 CDs e 1 fita.</p>
+          <p class="mb-0" id="resumoColecao">Carregando a sua coleção…</p>
         </div>
         <a class="btn btn-outline-primary" href="pages/acervo/">Ver todos os discos</a>
       </div>
       <!-- Grid do Bootstrap: 2 capas no celular, 3 no tablet, 4 no desktop (ID 02) -->
       <div class="row g-3 g-md-4" id="ultimosDiscos">
-          <div class="col-6 col-md-4 col-xl-3">
-            <article class="card card-disco">
-              <div class="capa-moldura">
-                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/400x400bb.webp"
-                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/600x600bb.webp 600w"
-                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
-                  width="400" height="400" loading="lazy" alt="Capa do álbum Abbey Road">
-              </div>
-              <div class="card-body">
-                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="pages/acervo/">Abbey Road</a></h3>
-                <p class="card-text mb-2">The Beatles, 1969</p>
-                <span class="badge badge-formato">Vinil</span>
-                <span class="badge badge-conservacao">NM</span>
-              </div>
-            </article>
-          </div>
-          <div class="col-6 col-md-4 col-xl-3">
-            <article class="card card-disco">
-              <div class="capa-moldura">
-                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/400x400bb.webp"
-                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.webp 600w"
-                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
-                  width="400" height="400" loading="lazy" alt="Capa do álbum The Wall">
-              </div>
-              <div class="card-body">
-                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="pages/acervo/">The Wall</a></h3>
-                <p class="card-text mb-2">Pink Floyd, 1979</p>
-                <span class="badge badge-formato">CD</span>
-                <span class="badge badge-conservacao">NM</span>
-              </div>
-            </article>
-          </div>
-          <div class="col-6 col-md-4 col-xl-3">
-            <article class="card card-disco">
-              <div class="capa-moldura">
-                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/400x400bb.webp"
-                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fe/8f/08/fe8f0815-5573-0fd9-bc5d-3d6a69841d97/07UMGIM12579.rgb.jpg/600x600bb.webp 600w"
-                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
-                  width="400" height="400" loading="lazy" alt="Capa do álbum Africa Brasil">
-              </div>
-              <div class="card-body">
-                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="pages/acervo/">Africa Brasil</a></h3>
-                <p class="card-text mb-2">Jorge Ben Jor, 1976</p>
-                <span class="badge badge-formato">Vinil</span>
-                <span class="badge badge-conservacao">VG+</span>
-              </div>
-            </article>
-          </div>
-          <div class="col-6 col-md-4 col-xl-3">
-            <article class="card card-disco">
-              <div class="capa-moldura">
-                <img class="capa-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/400x400bb.webp"
-                  srcset="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/200x200bb.webp 200w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/400x400bb.webp 400w, https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/de/62/c5de62c4-50a9-bc0a-1cb3-3836e7e0eb0e/06UMGIM31536.rgb.jpg/600x600bb.webp 600w"
-                  sizes="(min-width: 1200px) 18vw, (min-width: 768px) 30vw, 46vw"
-                  width="400" height="400" loading="lazy" alt="Capa do álbum Construção">
-              </div>
-              <div class="card-body">
-                <h3 class="card-title"><a class="stretched-link text-reset text-decoration-none" href="pages/acervo/">Construção</a></h3>
-                <p class="card-text mb-2">Chico Buarque, 1971</p>
-                <span class="badge badge-formato">K7</span>
-                <span class="badge badge-conservacao">G</span>
-              </div>
-            </article>
-          </div>
+          <div class="col-12"><div class="placeholder-glow"><span class="placeholder col-12 rounded" style="height: 12rem"></span></div></div>
       </div>
     </section>
 
@@ -151,14 +88,7 @@
         </div>
         <div class="col-lg-8">
           <ul class="list-group list-group-flush rounded-3" id="listaEmprestados">
-            <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
-              <span><strong>Kind of Blue</strong> está com Rafael Souza</span>
-              <span class="badge text-bg-light">devolve em 30/11/2026</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
-              <span><strong>Elis &amp; Tom</strong> está com Ana Paula Lima</span>
-              <span class="badge text-bg-danger">devolve em 15/11/2026</span>
-            </li>
+            <li class="list-group-item placeholder-glow"><span class="placeholder col-8"></span></li>
           </ul>
         </div>
       </div>
@@ -187,6 +117,9 @@
     </div>
   </footer>
 
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+  <script type="module" src="index.js"></script>
 </body>
 </html>
